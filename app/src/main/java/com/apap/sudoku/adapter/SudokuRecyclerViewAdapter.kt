@@ -1,5 +1,6 @@
 package com.apap.sudoku.adapter
 
+import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -18,7 +19,14 @@ class SudokuRecyclerViewAdapter(private val array: Array<IntArray>) :
 
         val x = if (position / 9 == 0) 1 else position / 9 + 1
         val y = if (position == (x - 1) * 9) 1 else position - (x - 1) * 9 + 1
-        holder.mSudokuDigit!!.text = array[x - 1][y - 1].toString()
+
+        if (array[x-1][y-1] > 0) {
+            holder.mSudokuDigit!!.typeface = Typeface.DEFAULT_BOLD
+            holder.mSudokuDigit!!.isEnabled = false
+            holder.mSudokuDigit!!.text = array[x-1][y-1].toString()
+        } else {
+            holder.mSudokuDigit!!.text = " "
+        }
     }
 
     override fun getItemCount(): Int {

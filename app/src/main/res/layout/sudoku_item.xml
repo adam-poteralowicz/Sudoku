@@ -8,9 +8,9 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:contentDescription="@string/app_name"
-        android:background="@android:color/white" />
+        android:background="@drawable/sudoku_cell_bg" />
 
-    <TextView
+    <EditText
         android:id="@+id/sudoku_digit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
