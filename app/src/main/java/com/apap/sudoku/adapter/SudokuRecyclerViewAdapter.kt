@@ -10,8 +10,6 @@ class SudokuRecyclerViewAdapter(private val array: Array<IntArray>) :
 
     RecyclerView.Adapter<SudokuViewHolder>() {
 
-    var firstBinding = true
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SudokuViewHolder {
 
         val view = LayoutInflater.from(parent.context).inflate(R.layout.sudoku_item, parent, false)
