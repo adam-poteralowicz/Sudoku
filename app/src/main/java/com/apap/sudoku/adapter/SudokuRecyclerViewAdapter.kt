@@ -28,6 +28,8 @@ class SudokuRecyclerViewAdapter(private val array: Array<IntArray>) :
         } else {
             holder.mSudokuDigit!!.text = populateSudokuCell(" ")
         }
+
+        holder.mSudokuDigit!!.addTextChangedListener(SudokuDigitChangedListener(array, x - 1, y - 1))
     }
 
     override fun getItemCount(): Int {
