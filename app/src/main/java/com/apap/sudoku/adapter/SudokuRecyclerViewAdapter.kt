@@ -1,6 +1,7 @@
 package com.apap.sudoku.adapter
 
 import android.graphics.Typeface
+import android.text.Editable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -23,13 +24,17 @@ class SudokuRecyclerViewAdapter(private val array: Array<IntArray>) :
         if (array[x - 1][y - 1] > 0) {
             holder.mSudokuDigit!!.typeface = Typeface.DEFAULT_BOLD
             holder.mSudokuDigit!!.isEnabled = false
-            holder.mSudokuDigit!!.text = array[x - 1][y - 1].toString()
+            holder.mSudokuDigit!!.text = populateSudokuCell(array[x - 1][y - 1].toString())
         } else {
-            holder.mSudokuDigit!!.text = " "
+            holder.mSudokuDigit!!.text = populateSudokuCell(" ")
         }
     }
 
     override fun getItemCount(): Int {
         return array.size * array[0].size
+    }
+
+    private fun populateSudokuCell(input: String) : Editable {
+        return Editable.Factory.getInstance().newEditable(input)
     }
 }
