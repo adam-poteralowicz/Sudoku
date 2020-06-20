@@ -25,7 +25,7 @@ class Sudoku(private val puzzle: Array<IntArray>) {
         return blanks.size
     }
 
-    fun checkCorrectness() : Boolean = checkCorrectnessForRows().and(checkCorrectnessForColumns())
+    fun checkCorrectness() : Boolean = if (blanksRemaining() > 0) false else checkCorrectnessForRows().and(checkCorrectnessForColumns())
 
     private fun checkCorrectnessForRows(): Boolean {
         var correctness = false
