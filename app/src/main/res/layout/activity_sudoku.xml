@@ -7,6 +7,32 @@
     android:background="#36594A"
     tools:context=".activity.SudokuActivity">
 
+    <Button
+        android:id="@+id/check_puzzle_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/check_puzzle_text"
+        app:layout_constraintBottom_toTopOf="@id/sudoku_recycler_view"
+        app:layout_constraintVertical_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <Button
+        android:id="@+id/generate_puzzle_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/new_puzzle_button"
+        app:layout_constraintBottom_toTopOf="@id/sudoku_recycler_view"
+        app:layout_constraintVertical_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/sudoku_recycler_view"
         android:layout_width="wrap_content"
