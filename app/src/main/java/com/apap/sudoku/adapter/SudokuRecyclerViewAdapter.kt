@@ -1,14 +1,16 @@
 package com.apap.sudoku.adapter
 
 import android.graphics.Typeface
-import android.text.Editable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.apap.sudoku.R
 
 class SudokuRecyclerViewAdapter(private val array: Array<IntArray>) :
+
     RecyclerView.Adapter<SudokuViewHolder>() {
+
+    var firstBinding = true
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SudokuViewHolder {
 
@@ -18,25 +20,21 @@ class SudokuRecyclerViewAdapter(private val array: Array<IntArray>) :
 
     override fun onBindViewHolder(holder: SudokuViewHolder, position: Int) {
 
-        val x = if (position / 9 == 0) 1 else position / 9 + 1
-        val y = if (position == (x - 1) * 9) 1 else position - (x - 1) * 9 + 1
+        val x = position / 9
+        val y = if (position == x * 9) 0 else position - (x * 9)
 
-        if (array[x - 1][y - 1] > 0) {
+        if (array[x][y] > 0) {
             holder.mSudokuDigit!!.typeface = Typeface.DEFAULT_BOLD
             holder.mSudokuDigit!!.isEnabled = false
-            holder.mSudokuDigit!!.text = populateSudokuCell(array[x - 1][y - 1].toString())
-        } else {
-            holder.mSudokuDigit!!.text = populateSudokuCell(" ")
+            holder.mSudokuDigit!!.text = array[x][y].toString()
+        } else if (array[x][y] == 0) {
+            holder.mSudokuDigit!!.text = " "
         }
 
-        holder.mSudokuDigit!!.addTextChangedListener(SudokuDigitChangedListener(array, x - 1, y - 1))
+        holder.mSudokuDigit!!.addTextChangedListener(SudokuDigitChangedListener(array, holder))
     }
 
     override fun getItemCount(): Int {
         return array.size * array[0].size
-    }
-
-    private fun populateSudokuCell(input: String) : Editable {
-        return Editable.Factory.getInstance().newEditable(input)
     }
 }

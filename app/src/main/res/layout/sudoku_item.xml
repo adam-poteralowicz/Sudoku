@@ -19,6 +19,6 @@
         android:textColor="@android:color/black"
         android:textSize="30sp"
         android:digits="123456789"
-        android:inputType="numberDecimal"
-        android:maxLength="2"/>
+        android:inputType="numberSigned"
+        android:maxLength="2" />
 </RelativeLayout>

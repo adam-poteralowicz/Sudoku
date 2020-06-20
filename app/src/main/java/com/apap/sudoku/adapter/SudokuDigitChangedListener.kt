@@ -3,21 +3,28 @@ package com.apap.sudoku.adapter
 import android.text.Editable
 import android.text.TextWatcher
 
-class SudokuDigitChangedListener(puzzle : Array<IntArray>, x: Int, y: Int) : TextWatcher {
-
-    private val _puzzle = puzzle
-    private val _x = x
-    private val _y = y
+class SudokuDigitChangedListener(
+    private val puzzle: Array<IntArray>,
+    private val holder: SudokuViewHolder
+) : TextWatcher {
 
     override fun afterTextChanged(s: Editable?) {
+        s?.let {
+            val x = holder.adapterPosition / 9
+            val y = if (holder.adapterPosition == x * 9) 0 else holder.adapterPosition - (x * 9)
 
+            //println("Listener AFTER || new digit: ${s.trim()}")
+            if (!s.toString().equals(" ") && !s.toString().equals("") && !s.trim().toString().equals("0")) {
+                puzzle[x][y] = Integer.parseInt(holder.mSudokuDigit!!.text.trim().toString())
+            }
+        }
     }
 
     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
+        //println("Listener BEFORE || new digit: ${s!!.trim()}")
     }
 
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-        _puzzle[_x][_y] = if (s!!.toString().equals(" ")) return else Integer.parseInt(s.trim().toString())
+        //println("Listener ON || new digit: ${s!!.trim()}")
     }
 }

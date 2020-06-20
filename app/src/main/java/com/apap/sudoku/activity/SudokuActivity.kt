@@ -25,6 +25,8 @@ class SudokuActivity : AppCompatActivity() {
             adapter = SudokuRecyclerViewAdapter(puzzle)
         }
 
+        sudoku_recycler_view.adapter?.notifyDataSetChanged()
+
         check_puzzle_button.setOnClickListener { _ ->
             if (sudoku.checkCorrectness()) {
                 showDialog(PuzzleSolvedDialog.newInstance())
