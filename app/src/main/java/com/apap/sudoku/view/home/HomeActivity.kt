@@ -1,12 +1,13 @@
-package com.apap.sudoku.activity
+package com.apap.sudoku.view.home
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.apap.sudoku.R
+import com.apap.sudoku.view.game.activity.SudokuActivity
 import kotlinx.android.synthetic.main.activity_welcome.*
 
-class WelcomeActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

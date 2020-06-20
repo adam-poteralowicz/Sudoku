@@ -1,4 +1,4 @@
-package com.apap.sudoku.dialog
+package com.apap.sudoku.view.game.dialog
 
 import android.app.Dialog
 import android.os.Bundle

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#36594A"
-    tools:context=".activity.SudokuActivity">
+    tools:context=".view.game.activity.SudokuActivity">
 
     <Button
         android:id="@+id/check_puzzle_button"

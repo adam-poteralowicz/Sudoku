@@ -1,4 +1,4 @@
-package com.apap.sudoku.dialog
+package com.apap.sudoku.view.game.dialog
 
 import android.app.Dialog
 import android.content.Intent
@@ -6,8 +6,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import com.apap.sudoku.R
-import com.apap.sudoku.activity.SudokuActivity
-import com.apap.sudoku.activity.WelcomeActivity
+import com.apap.sudoku.view.game.activity.SudokuActivity
+import com.apap.sudoku.view.home.HomeActivity
 
 class PuzzleSolvedDialog : DialogFragment() {
 
@@ -23,7 +23,7 @@ class PuzzleSolvedDialog : DialogFragment() {
                     startActivity(Intent(it, SudokuActivity::class.java))
                 }
                 .setNegativeButton(getString(R.string.dialog_cancel)) { _, _ ->
-                    startActivity(Intent(it, WelcomeActivity::class.java))
+                    startActivity(Intent(it, HomeActivity::class.java))
                 }.create()
         }
         return dialog!!

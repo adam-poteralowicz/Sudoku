@@ -1,4 +1,4 @@
-package com.apap.sudoku.adapter
+package com.apap.sudoku.view.game.adapter
 
 import android.graphics.Typeface
 import android.view.LayoutInflater
