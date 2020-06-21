@@ -1,21 +1,18 @@
 package com.apap.sudoku.di
 
+import android.app.Activity
 import android.app.Application
-import com.apap.sudoku.di.component.DaggerSudokuComponent
-import com.apap.sudoku.di.component.SudokuComponent
-import com.apap.sudoku.di.module.AppModule
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasActivityInjector
+import javax.inject.Inject
 
-class App : Application() {
+class App : Application(), HasActivityInjector {
 
-    private val component: SudokuComponent by lazy {
-        DaggerSudokuComponent
-            .builder()
-            .appModule(AppModule(this))
-            .build()
-    }
+    @Inject
+    lateinit var activityDispatchingAndroidInjector : DispatchingAndroidInjector<Activity>
 
-    override fun onCreate() {
-        super.onCreate()
-        component.inject(this)
+    override fun activityInjector(): AndroidInjector<Activity> {
+        return activityDispatchingAndroidInjector
     }
 }

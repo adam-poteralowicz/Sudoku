@@ -1,14 +1,43 @@
 package com.apap.sudoku.di.module
 
-import com.apap.sudoku.di.App
+import com.apap.sudoku.data.interactor.GetSudokuForDifficultyInteractor
+import com.apap.sudoku.data.source.repository.SudokuRepositoryImpl
+import com.apap.sudoku.di.component.HomeActivityComponent
+import com.apap.sudoku.di.component.SudokuActivityComponent
 import dagger.Module
 import dagger.Provides
+import okhttp3.OkHttpClient
+import retrofit2.Retrofit
 import javax.inject.Singleton
 
-@Module
-class AppModule(val app: App) {
+@Module(subcomponents = [HomeActivityComponent::class, SudokuActivityComponent::class])
+class AppModule {
+
+    private val okHttpClient: OkHttpClient = OkHttpClient()
+    private val baseUrl = "https://sugoku.herokuapp.com"
 
     @Provides
     @Singleton
-    fun provideApp() = app
+    fun provideOkHttpClient() : OkHttpClient {
+        return okHttpClient
+    }
+
+    @Provides
+    @Singleton
+    fun provideRetrofit(okHttpClient: OkHttpClient) : Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(baseUrl)
+            .client(okHttpClient)
+            .build()
+    }
+
+    @Provides
+    fun provideSudokuRepository() : SudokuRepositoryImpl = SudokuRepositoryImpl()
+
+    @Provides
+    @Singleton
+    fun provideGetSudokuForDifficultyInteractor(sudokuRepository: SudokuRepositoryImpl) : GetSudokuForDifficultyInteractor {
+        return GetSudokuForDifficultyInteractor(sudokuRepository)
+    }
+
 }
