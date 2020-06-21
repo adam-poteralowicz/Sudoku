@@ -13,13 +13,12 @@ import javax.inject.Singleton
 @Module(subcomponents = [HomeActivityComponent::class, SudokuActivityComponent::class])
 class AppModule {
 
-    private val okHttpClient: OkHttpClient = OkHttpClient()
     private val baseUrl = "https://sugoku.herokuapp.com"
 
     @Provides
     @Singleton
     fun provideOkHttpClient() : OkHttpClient {
-        return okHttpClient
+        return OkHttpClient()
     }
 
     @Provides
