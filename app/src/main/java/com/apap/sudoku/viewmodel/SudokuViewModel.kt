@@ -7,8 +7,7 @@ import com.apap.sudoku.data.interactor.GetSudokuForDifficultyInteractor
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
-class SudokuViewModel @Inject constructor(private var getSudokuForDifficultyInteractor: GetSudokuForDifficultyInteractor) :
-    ViewModel() {
+class SudokuViewModel @Inject constructor(private var getSudokuForDifficultyInteractor: GetSudokuForDifficultyInteractor) : ViewModel() {
 
     private val board: MutableLiveData<Array<IntArray>> by lazy {
         MutableLiveData<Array<IntArray>>() .also {
@@ -30,6 +29,6 @@ class SudokuViewModel @Inject constructor(private var getSudokuForDifficultyInte
     }
 
     private fun fetchSudoku(difficulty: String) {
-        disposable.add(getSudokuForDifficultyInteractor.execute(difficulty).subscribe { it -> board.value = it._board})
+        disposable.add(getSudokuForDifficultyInteractor.execute(difficulty).subscribe { board.value = it._board})
     }
 }

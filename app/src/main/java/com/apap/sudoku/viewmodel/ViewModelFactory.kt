@@ -22,13 +22,3 @@ class ViewModelFactory @Inject constructor(private val viewModelsMap: Map<Class<
     }
 
 }
-
-//@Suppress("UNCHECKED_CAST")
-//class ViewModelFactory @Inject constructor(private val owner: SavedStateRegistryOwner, private var interactor: GetSudokuForDifficultyInteractor) : AbstractSavedStateViewModelFactory(owner, null) {
-//    override fun <T : ViewModel?> create(
-//        key: String,
-//        modelClass: Class<T>,
-//        state: SavedStateHandle
-//    ) =
-//        SudokuViewModel(state, interactor) as T
-//}
