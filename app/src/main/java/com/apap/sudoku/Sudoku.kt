@@ -17,7 +17,7 @@ class Sudoku(private val puzzle: Array<IntArray>) {
     }
 
     // FIXME returns wrong result
-    fun checkCorrectness() : Boolean = if (blanksRemaining() > 0) false else checkCorrectnessForRows().and(checkCorrectnessForColumns())
+    fun checkCorrectness() : Boolean = if (blanksRemaining() > 0) false else checkCorrectnessForRows() && checkCorrectnessForColumns()
 
     private fun blanksRemaining(): Int {
         val blanks = (puzzle.indices).flatMap { row ->
@@ -46,14 +46,15 @@ class Sudoku(private val puzzle: Array<IntArray>) {
         var correctness = false
         var column : IntArray
 
-        for (i in puzzle.indices) {
+        for (i in 0 until puzzle.size) {
             column = IntArray(puzzle.size)
             var j = 0
             puzzle.indices.forEach { row ->
-                column[j] = puzzle[i][row]
+                column[j] = puzzle[row][i]
                 j++
             }
 
+            println(column.contentToString())
             correctness = isSumCorrect(column)
             if (!correctness) {
                 return false

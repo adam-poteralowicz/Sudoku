@@ -8,4 +8,13 @@
     <string name="puzzle_solved_question">Do you want to generate new puzzle?</string>
     <string name="dialog_cancel">NO</string>
     <string name="puzzle_not_solved_dialog_title">Puzzle not solved! Try again</string>
+    <string name="digit_1">1</string>
+    <string name="digit_2">2</string>
+    <string name="digit_3">3</string>
+    <string name="digit_4">4</string>
+    <string name="digit_5">5</string>
+    <string name="digit_6">6</string>
+    <string name="digit_7">7</string>
+    <string name="digit_8">8</string>
+    <string name="digit_9">9</string>
 </resources>

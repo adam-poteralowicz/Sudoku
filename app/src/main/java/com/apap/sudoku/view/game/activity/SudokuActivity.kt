@@ -1,6 +1,7 @@
 package com.apap.sudoku.view.game.activity
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
@@ -17,10 +18,12 @@ import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_sudoku.*
 import javax.inject.Inject
 
-class SudokuActivity : AppCompatActivity() {
+class SudokuActivity : AppCompatActivity(), View.OnClickListener {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
+
+    lateinit var sudoku : Sudoku
 
     private var puzzle: Array<IntArray>? = arrayOf(
         IntArray(9), IntArray(9), IntArray(9),
@@ -32,7 +35,6 @@ class SudokuActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sudoku)
         AndroidInjection.inject(this@SudokuActivity)
-
         loadPuzzle()
 
         sudoku_recycler_view.apply {
@@ -41,20 +43,23 @@ class SudokuActivity : AppCompatActivity() {
         }
         sudoku_recycler_view.adapter?.notifyDataSetChanged()
 
-        val sudoku = Sudoku(puzzle!!)
-
         check_puzzle_button.setOnClickListener {
-            if (sudoku.checkCorrectness()) {
-                showDialog(PuzzleSolvedDialog.newInstance())
-            } else {
-                showDialog(PuzzleNotSolvedDialog.newInstance())
+            when (sudoku.checkCorrectness()) {
+                true -> showDialog(PuzzleSolvedDialog.newInstance())
+                false -> showDialog(PuzzleNotSolvedDialog.newInstance())
             }
         }
 
         generate_puzzle_button.setOnClickListener {
             loadPuzzle()
         }
+    }
 
+    override fun onClick(v: View?) {
+        when(v!!.id) {
+            R.id.digit1, R.id.digit2, R.id.digit3, R.id.digit4, R.id.digit5, R.id.digit6, R.id.digit7,
+            R.id.digit8, R.id.digit9 -> SudokuRecyclerViewAdapter.changeDigit(v.id.toString().lastIndex.toString())
+        }
     }
 
     private fun loadPuzzle() {
@@ -64,6 +69,7 @@ class SudokuActivity : AppCompatActivity() {
         model.getSudokuBoard().observe(this, Observer {
             puzzle = it.getBoard()
             sudoku_recycler_view.adapter = SudokuRecyclerViewAdapter(puzzle!!)
+            sudoku = Sudoku(puzzle!!)
         })
     }
 
