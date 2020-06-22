@@ -16,6 +16,7 @@ class Sudoku(private val puzzle: Array<IntArray>) {
             intArrayOf(9, 0, 0, 0, 1, 3, 6, 0, 0))
     }
 
+    // FIXME returns wrong result
     fun checkCorrectness() : Boolean = if (blanksRemaining() > 0) false else checkCorrectnessForRows().and(checkCorrectnessForColumns())
 
     private fun blanksRemaining(): Int {

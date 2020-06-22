@@ -22,41 +22,48 @@ class SudokuActivity : AppCompatActivity() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    private var puzzle : Array<IntArray>? = null
+    private var puzzle: Array<IntArray>? = arrayOf(
+        IntArray(9), IntArray(9), IntArray(9),
+        IntArray(9), IntArray(9), IntArray(9),
+        IntArray(9), IntArray(9), IntArray(9)
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sudoku)
         AndroidInjection.inject(this@SudokuActivity)
 
+        loadPuzzle()
 
-        observableViewModel()
+        sudoku_recycler_view.apply {
+            layoutManager = GridLayoutManager(this@SudokuActivity, 9)
+            adapter = SudokuRecyclerViewAdapter(puzzle!!)
+        }
+        sudoku_recycler_view.adapter?.notifyDataSetChanged()
+
+        val sudoku = Sudoku(puzzle!!)
+
+        check_puzzle_button.setOnClickListener {
+            if (sudoku.checkCorrectness()) {
+                showDialog(PuzzleSolvedDialog.newInstance())
+            } else {
+                showDialog(PuzzleNotSolvedDialog.newInstance())
+            }
+        }
+
+        generate_puzzle_button.setOnClickListener {
+            loadPuzzle()
+        }
+
     }
 
-    private fun observableViewModel() {
+    private fun loadPuzzle() {
 
-        //val model = ViewModelProviders.of(this@SudokuActivity).get(SudokuViewModel::class.java)
-        //val model = ViewModelProvider.AndroidViewModelFactory.getInstance(application).create(SudokuViewModel::class.java)
-        val model : SudokuViewModel by viewModels() { viewModelFactory }
-        model.getBoard().observe(this, Observer {
-            puzzle = it
+        val model: SudokuViewModel by viewModels() { viewModelFactory }
 
-            val sudoku = Sudoku(puzzle!!)
-
-            sudoku_recycler_view.apply {
-                layoutManager = GridLayoutManager(this@SudokuActivity, 9)
-                adapter = SudokuRecyclerViewAdapter(puzzle!!)
-            }
-
-            sudoku_recycler_view.adapter?.notifyDataSetChanged()
-
-            check_puzzle_button.setOnClickListener { _ ->
-                if (sudoku.checkCorrectness()) {
-                    showDialog(PuzzleSolvedDialog.newInstance())
-                } else {
-                    showDialog(PuzzleNotSolvedDialog.newInstance())
-                }
-            }
+        model.getSudokuBoard().observe(this, Observer {
+            puzzle = it.getBoard()
+            sudoku_recycler_view.adapter = SudokuRecyclerViewAdapter(puzzle!!)
         })
     }
 

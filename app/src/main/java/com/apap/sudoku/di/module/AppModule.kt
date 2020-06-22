@@ -7,6 +7,7 @@ import com.apap.sudoku.di.component.SudokuActivityComponent
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import javax.inject.Singleton
 
@@ -18,7 +19,11 @@ class AppModule {
     @Provides
     @Singleton
     fun provideOkHttpClient() : OkHttpClient {
-        return OkHttpClient()
+        return OkHttpClient().newBuilder()
+            .addInterceptor(HttpLoggingInterceptor().apply {
+                level = HttpLoggingInterceptor.Level.BODY
+            })
+            .build()
     }
 
     @Provides

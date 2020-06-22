@@ -1,8 +1,8 @@
 package com.apap.sudoku.data.source.repository
 
+import androidx.lifecycle.MutableLiveData
 import com.apap.sudoku.data.model.SudokuBoardResponse
 import com.apap.sudoku.data.source.RemoteSudokuSource
-import io.reactivex.Observable
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -10,23 +10,23 @@ import timber.log.Timber
 
 class SudokuRepositoryImpl : SudokuRepository {
 
-    override fun getSudoku(difficultyMode: String): Observable<SudokuBoardResponse> {
+    override fun getSudoku(difficultyMode: String): MutableLiveData<SudokuBoardResponse> {
         val remoteSudokuSource = RemoteSudokuSource.create()
         val call = remoteSudokuSource.getSudoku(difficultyMode)
-        var responseData : Observable<SudokuBoardResponse> = Observable.empty()
+        val responseData : MutableLiveData<SudokuBoardResponse> = MutableLiveData()
 
         call.enqueue(object: Callback<SudokuBoardResponse> {
 
             override fun onFailure(call: Call<SudokuBoardResponse>, t: Throwable) {
-                Timber.e("getSudoku -- Failure : $t")
+                Timber.e("${javaClass.name}|| getSudoku -- Failure : $t")
             }
 
             override fun onResponse(
                 call: Call<SudokuBoardResponse>,
                 response: Response<SudokuBoardResponse>
             ) {
-                if (response.isSuccessful && response.body() != null) {
-                    responseData = Observable.just(response.body())
+                if (response.isSuccessful) {
+                    responseData.value = response.body()
                 }
             }
         })

@@ -1,9 +1,9 @@
 package com.apap.sudoku.data.source.repository
 
+import androidx.lifecycle.MutableLiveData
 import com.apap.sudoku.data.model.SudokuBoardResponse
-import io.reactivex.Observable
 
 interface SudokuRepository {
 
-    fun getSudoku(difficultyMode: String) : Observable<SudokuBoardResponse>
+    fun getSudoku(difficultyMode: String) : MutableLiveData<SudokuBoardResponse>
 }
