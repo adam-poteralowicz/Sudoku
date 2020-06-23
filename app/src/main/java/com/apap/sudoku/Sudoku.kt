@@ -2,24 +2,9 @@ package com.apap.sudoku
 
 class Sudoku(private val puzzle: Array<IntArray>) {
 
-    companion object {
-
-        fun provideTestSudokuArray() = arrayOf(
-            intArrayOf(0, 0, 6, 0, 0, 0, 0, 0, 5),
-            intArrayOf(1, 0, 0, 4, 5, 0, 0, 0, 0),
-            intArrayOf(0, 5, 7, 0, 8, 0, 0, 0, 0),
-            intArrayOf(0, 0, 0, 0, 6, 5, 0, 0, 0),
-            intArrayOf(3, 6, 5, 0, 9, 7, 4, 1, 2),
-            intArrayOf(0, 8, 9, 0, 2, 4, 5, 6, 0),
-            intArrayOf(0, 3, 0, 6, 4, 0, 9, 0, 8),
-            intArrayOf(0, 0, 0, 0, 0, 8, 0, 0, 1),
-            intArrayOf(9, 0, 0, 0, 1, 3, 6, 0, 0))
-    }
-
-    // FIXME returns wrong result
     fun checkCorrectness() : Boolean =
         if (blanksRemaining() > 0) false
-        else checkCorrectnessForRows() && checkCorrectnessForColumns() && checkCorrectnessForMatrices()
+        else checkRows() && checkColumns() && checkMatrices()
 
     private fun blanksRemaining(): Int {
         val blanks = (puzzle.indices).flatMap { row ->
@@ -30,7 +15,7 @@ class Sudoku(private val puzzle: Array<IntArray>) {
         return blanks.size
     }
 
-    private fun checkCorrectnessForRows(): Boolean {
+    private fun checkRows(): Boolean {
         var correctness = false
 
         puzzle.indices.forEach { row ->
@@ -43,8 +28,7 @@ class Sudoku(private val puzzle: Array<IntArray>) {
         return correctness
     }
 
-    private fun checkCorrectnessForColumns() : Boolean {
-
+    private fun checkColumns() : Boolean {
         var correctness = false
         var column : IntArray
 
@@ -66,7 +50,7 @@ class Sudoku(private val puzzle: Array<IntArray>) {
         return correctness
     }
 
-    private fun checkCorrectnessForMatrices() : Boolean {
+    private fun checkMatrices() : Boolean {
 
         return checkMatrix(0, 2, 0, 2)
                 && checkMatrix(3, 5, 0, 2)
