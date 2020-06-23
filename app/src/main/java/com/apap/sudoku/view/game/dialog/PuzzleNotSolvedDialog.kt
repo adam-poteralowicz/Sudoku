@@ -15,7 +15,7 @@ class PuzzleNotSolvedDialog : DialogFragment() {
         activity?.let {
             dialog = AlertDialog.Builder(it)
                 .setTitle(getString(R.string.puzzle_not_solved_dialog_title))
-                .setPositiveButton(R.string.dialog_ok) { dialog, _ ->
+                .setPositiveButton(R.string.puzzle_not_solved_dialog_ok) { dialog, _ ->
                     dialog.cancel()
                 }.create()
         }

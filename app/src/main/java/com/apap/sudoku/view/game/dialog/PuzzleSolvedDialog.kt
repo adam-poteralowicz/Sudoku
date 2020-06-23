@@ -19,7 +19,7 @@ class PuzzleSolvedDialog : DialogFragment() {
             dialog = AlertDialog.Builder(it)
                 .setTitle(R.string.puzzle_solved_dialog_title)
                 .setMessage(R.string.puzzle_solved_question)
-                .setPositiveButton(R.string.dialog_ok) { _, _ ->
+                .setPositiveButton(R.string.puzzle_solved_dialog_ok) { _, _ ->
                     startActivity(Intent(it, SudokuActivity::class.java))
                 }
                 .setNegativeButton(getString(R.string.dialog_cancel)) { _, _ ->
