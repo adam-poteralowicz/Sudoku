@@ -21,12 +21,8 @@ import javax.inject.Inject
 
 class SudokuActivity : AppCompatActivity(), SudokuRecyclerViewAdapter.OnSudokuCellClickListener {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
-
+    @Inject lateinit var viewModelFactory: ViewModelFactory
     lateinit var sudoku : Sudoku
-    lateinit var sudokuAdapter : SudokuRecyclerViewAdapter
-
     private var puzzle: Array<IntArray>? = arrayOf(
         IntArray(9), IntArray(9), IntArray(9),
         IntArray(9), IntArray(9), IntArray(9),
@@ -36,7 +32,7 @@ class SudokuActivity : AppCompatActivity(), SudokuRecyclerViewAdapter.OnSudokuCe
     companion object {
 
         fun changeDigit(digit: Int, cell: TextView) {
-            cell.text = digit.toString()
+            SudokuViewModel.changeDigit(digit, cell)
         }
     }
 
@@ -71,9 +67,7 @@ class SudokuActivity : AppCompatActivity(), SudokuRecyclerViewAdapter.OnSudokuCe
     }
 
     private fun loadPuzzle() {
-
         val model: SudokuViewModel by viewModels() { viewModelFactory }
-
         model.getSudokuBoard().observe(this, Observer {
             puzzle = it.getBoard()
             sudoku_recycler_view.adapter = SudokuRecyclerViewAdapter(puzzle!!, this@SudokuActivity)

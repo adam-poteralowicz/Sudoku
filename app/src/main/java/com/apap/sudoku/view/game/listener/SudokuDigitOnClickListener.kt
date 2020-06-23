@@ -1,4 +1,4 @@
-package com.apap.sudoku.view.game
+package com.apap.sudoku.view.game.listener
 
 import android.view.View
 import android.widget.TextView

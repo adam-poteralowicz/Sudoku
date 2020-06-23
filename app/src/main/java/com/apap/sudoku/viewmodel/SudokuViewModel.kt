@@ -1,5 +1,6 @@
 package com.apap.sudoku.viewmodel
 
+import android.widget.TextView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.apap.sudoku.data.interactor.GetSudokuForDifficultyInteractor
@@ -11,6 +12,10 @@ class SudokuViewModel @Inject constructor(private var getSudokuForDifficultyInte
 
     companion object {
         val disposable = CompositeDisposable()
+
+        fun changeDigit(digit: Int, cell: TextView) {
+            cell.text = digit.toString()
+        }
     }
 
     override fun onCleared() {

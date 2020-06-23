@@ -15,6 +15,7 @@ class SudokuViewHolder(itemView: View, onSudokuCellClickListener: SudokuRecycler
     init {
         mSudokuDigit = itemView.findViewById(R.id.sudoku_digit)
         mSudokuCell = itemView.findViewById(R.id.sudoku_cell)
+
         this.onSudokuCellClickListener = onSudokuCellClickListener
         itemView.setOnClickListener(this)
     }
