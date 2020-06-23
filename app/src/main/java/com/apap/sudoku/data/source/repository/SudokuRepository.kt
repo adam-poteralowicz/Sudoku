@@ -5,5 +5,5 @@ import com.apap.sudoku.data.model.SudokuBoardResponse
 
 interface SudokuRepository {
 
-    fun getSudoku(difficultyMode: String) : MutableLiveData<SudokuBoardResponse>
+    fun getSudoku(difficulty: String) : MutableLiveData<SudokuBoardResponse>
 }

@@ -10,9 +10,9 @@ import timber.log.Timber
 
 class SudokuRepositoryImpl : SudokuRepository {
 
-    override fun getSudoku(difficultyMode: String): MutableLiveData<SudokuBoardResponse> {
+    override fun getSudoku(difficulty: String): MutableLiveData<SudokuBoardResponse> {
         val remoteSudokuSource = RemoteSudokuSource.create()
-        val call = remoteSudokuSource.getSudoku(difficultyMode)
+        val call = remoteSudokuSource.getSudoku(difficulty)
         val responseData : MutableLiveData<SudokuBoardResponse> = MutableLiveData()
 
         call.enqueue(object: Callback<SudokuBoardResponse> {
@@ -21,10 +21,7 @@ class SudokuRepositoryImpl : SudokuRepository {
                 Timber.e("${javaClass.name}|| getSudoku -- Failure : $t")
             }
 
-            override fun onResponse(
-                call: Call<SudokuBoardResponse>,
-                response: Response<SudokuBoardResponse>
-            ) {
+            override fun onResponse(call: Call<SudokuBoardResponse>, response: Response<SudokuBoardResponse>) {
                 if (response.isSuccessful) {
                     responseData.value = response.body()
                 }

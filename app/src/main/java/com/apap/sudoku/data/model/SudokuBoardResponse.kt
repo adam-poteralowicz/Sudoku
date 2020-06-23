@@ -15,10 +15,7 @@ class SudokuBoardResponse {
 
         var values = ""
         for (element in _board!!) {
-            element.iterator().forEach {
-                values = values.plus(it)
-            }
-            values = values.plus(" ")
+            values += "${element.contentToString()}\n"
         }
 
         return values

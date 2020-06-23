@@ -14,11 +14,13 @@ interface RemoteSudokuSource {
     fun getSudoku(@Query("difficulty") difficulty : String): Call<SudokuBoardResponse>
 
     companion object Factory {
+        private const val baseUrl = "https://sugoku.herokuapp.com"
+
         fun create(): RemoteSudokuSource {
             val retrofit = Retrofit.Builder()
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl("https://sugoku.herokuapp.com")
+                .baseUrl(baseUrl)
                 .build()
 
             return retrofit.create(RemoteSudokuSource::class.java)

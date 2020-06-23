@@ -40,7 +40,6 @@ class Sudoku(private val puzzle: Array<IntArray>) {
                 j++
             }
 
-            println(column.contentToString())
             correctness = isSumCorrect(column)
             if (!correctness) {
                 return false

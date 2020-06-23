@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 class GetSudokuForDifficultyInteractor @Inject constructor(var sudokuRepository: SudokuRepositoryImpl) {
 
-    fun getPuzzle(p: String): LiveData<SudokuBoardResponse> {
-        return sudokuRepository.getSudoku(p)
+    fun getPuzzle(difficulty: String): LiveData<SudokuBoardResponse> {
+        return sudokuRepository.getSudoku(difficulty)
     }
 }
