@@ -4,4 +4,5 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="sudokuBackground">#36594A</color>
+    <color name="welcomeText">#C9A6B5</color>
 </resources>
