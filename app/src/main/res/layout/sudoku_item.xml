@@ -10,7 +10,7 @@
         android:contentDescription="@string/app_name"
         android:background="@android:color/transparent" />
 
-    <EditText
+    <TextView
         android:id="@+id/sudoku_digit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -18,7 +18,5 @@
         android:background="@android:color/transparent"
         android:textColor="@android:color/black"
         android:textSize="30sp"
-        android:digits="123456789"
-        android:inputType="numberSigned"
-        android:maxLength="2" />
+        android:maxLength="2"/>
 </RelativeLayout>

@@ -6,16 +6,19 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.apap.sudoku.R
 
-class SudokuRecyclerViewAdapter(private val array: Array<IntArray>) : RecyclerView.Adapter<SudokuViewHolder>() {
+class SudokuRecyclerViewAdapter(private val array: Array<IntArray>, private val onSudokuCellClickListener: OnSudokuCellClickListener) : RecyclerView.Adapter<SudokuViewHolder>() {
+
+    interface OnSudokuCellClickListener {
+        fun onSudokuCellClick()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SudokuViewHolder {
 
         val view = LayoutInflater.from(parent.context).inflate(R.layout.sudoku_item, parent, false)
-        return SudokuViewHolder(view)
+        return SudokuViewHolder(view, this.onSudokuCellClickListener)
     }
 
     override fun onBindViewHolder(holder: SudokuViewHolder, position: Int) {
-        SudokuRecyclerViewAdapter.holder = holder
 
         val x = position / 9
         val y = if (position == x * 9) 0 else position - (x * 9)
@@ -33,13 +36,5 @@ class SudokuRecyclerViewAdapter(private val array: Array<IntArray>) : RecyclerVi
 
     override fun getItemCount(): Int {
         return array.size * array[0].size
-    }
-
-    companion object {
-        lateinit var holder: SudokuViewHolder
-
-        fun changeDigit(digit: String) {
-            holder.mSudokuDigit!!.text = digit
-        }
     }
 }

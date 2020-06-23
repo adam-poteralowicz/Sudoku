@@ -1,7 +1,6 @@
 package com.apap.sudoku.view.game.activity
 
 import android.os.Bundle
-import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
@@ -12,13 +11,14 @@ import com.apap.sudoku.Sudoku
 import com.apap.sudoku.view.game.adapter.SudokuRecyclerViewAdapter
 import com.apap.sudoku.view.game.dialog.PuzzleNotSolvedDialog
 import com.apap.sudoku.view.game.dialog.PuzzleSolvedDialog
+import com.apap.sudoku.view.game.dialog.SudokuDigitChoiceDialog
 import com.apap.sudoku.viewmodel.SudokuViewModel
 import com.apap.sudoku.viewmodel.ViewModelFactory
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_sudoku.*
 import javax.inject.Inject
 
-class SudokuActivity : AppCompatActivity(), View.OnClickListener {
+class SudokuActivity : AppCompatActivity(), SudokuRecyclerViewAdapter.OnSudokuCellClickListener {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
@@ -39,7 +39,7 @@ class SudokuActivity : AppCompatActivity(), View.OnClickListener {
 
         sudoku_recycler_view.apply {
             layoutManager = GridLayoutManager(this@SudokuActivity, 9)
-            adapter = SudokuRecyclerViewAdapter(puzzle!!)
+            adapter = SudokuRecyclerViewAdapter(puzzle!!, this@SudokuActivity)
         }
         sudoku_recycler_view.adapter?.notifyDataSetChanged()
 
@@ -55,11 +55,8 @@ class SudokuActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    override fun onClick(v: View?) {
-        when(v!!.id) {
-            R.id.digit1, R.id.digit2, R.id.digit3, R.id.digit4, R.id.digit5, R.id.digit6, R.id.digit7,
-            R.id.digit8, R.id.digit9 -> SudokuRecyclerViewAdapter.changeDigit(v.id.toString().lastIndex.toString())
-        }
+    override fun onSudokuCellClick() {
+        showDialog(SudokuDigitChoiceDialog.newInstance())
     }
 
     private fun loadPuzzle() {
@@ -68,7 +65,7 @@ class SudokuActivity : AppCompatActivity(), View.OnClickListener {
 
         model.getSudokuBoard().observe(this, Observer {
             puzzle = it.getBoard()
-            sudoku_recycler_view.adapter = SudokuRecyclerViewAdapter(puzzle!!)
+            sudoku_recycler_view.adapter = SudokuRecyclerViewAdapter(puzzle!!, this@SudokuActivity)
             sudoku = Sudoku(puzzle!!)
         })
     }
