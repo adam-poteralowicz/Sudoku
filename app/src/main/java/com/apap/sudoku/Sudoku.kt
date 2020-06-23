@@ -3,16 +3,16 @@ package com.apap.sudoku
 class Sudoku(private val puzzle: Array<IntArray>) {
 
     fun checkCorrectness() : Boolean =
-        if (blanksRemaining() > 0) false
+        if (blanksRemaining()) false
         else checkRows() && checkColumns() && checkMatrices()
 
-    private fun blanksRemaining(): Int {
+    private fun blanksRemaining(): Boolean {
         val blanks = (puzzle.indices).flatMap { row ->
             (puzzle[row].indices)
                 .filter { column -> puzzle[row][column] == 0 }
         }
 
-        return blanks.size
+        return blanks.isNotEmpty()
     }
 
     private fun checkRows(): Boolean {
