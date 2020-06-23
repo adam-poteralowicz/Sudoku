@@ -68,6 +68,7 @@ class SudokuActivity : AppCompatActivity(), SudokuRecyclerViewAdapter.OnSudokuCe
 
     private fun loadPuzzle() {
         val model: SudokuViewModel by viewModels() { viewModelFactory }
+
         model.getSudokuBoard().observe(this, Observer {
             puzzle = it.getBoard()
             sudoku_recycler_view.adapter = SudokuRecyclerViewAdapter(puzzle!!, this@SudokuActivity)

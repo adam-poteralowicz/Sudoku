@@ -19,51 +19,15 @@ class SudokuDigitChoiceDialog(private val digit: TextView) : DialogFragment() {
         dialog!!.window!!.setGravity(Gravity.CENTER_HORIZONTAL)
         dialog!!.window!!.setGravity(Gravity.BOTTOM)
 
-        (view.findViewById(R.id.digit1) as Button).setOnClickListener(
-            SudokuDigitOnClickListener(
-                digit
-            )
-        )
-        (view.findViewById(R.id.digit2) as Button).setOnClickListener(
-            SudokuDigitOnClickListener(
-                digit
-            )
-        )
-        (view.findViewById(R.id.digit3) as Button).setOnClickListener(
-            SudokuDigitOnClickListener(
-                digit
-            )
-        )
-        (view.findViewById(R.id.digit4) as Button).setOnClickListener(
-            SudokuDigitOnClickListener(
-                digit
-            )
-        )
-        (view.findViewById(R.id.digit5) as Button).setOnClickListener(
-            SudokuDigitOnClickListener(
-                digit
-            )
-        )
-        (view.findViewById(R.id.digit6) as Button).setOnClickListener(
-            SudokuDigitOnClickListener(
-                digit
-            )
-        )
-        (view.findViewById(R.id.digit7) as Button).setOnClickListener(
-            SudokuDigitOnClickListener(
-                digit
-            )
-        )
-        (view.findViewById(R.id.digit8) as Button).setOnClickListener(
-            SudokuDigitOnClickListener(
-                digit
-            )
-        )
-        (view.findViewById(R.id.digit9) as Button).setOnClickListener(
-            SudokuDigitOnClickListener(
-                digit
-            )
-        )
+        (view.findViewById(R.id.digit1) as Button).setOnClickListener(SudokuDigitOnClickListener(digit))
+        (view.findViewById(R.id.digit2) as Button).setOnClickListener(SudokuDigitOnClickListener(digit))
+        (view.findViewById(R.id.digit3) as Button).setOnClickListener(SudokuDigitOnClickListener(digit))
+        (view.findViewById(R.id.digit4) as Button).setOnClickListener(SudokuDigitOnClickListener(digit))
+        (view.findViewById(R.id.digit5) as Button).setOnClickListener(SudokuDigitOnClickListener(digit))
+        (view.findViewById(R.id.digit6) as Button).setOnClickListener(SudokuDigitOnClickListener(digit))
+        (view.findViewById(R.id.digit7) as Button).setOnClickListener(SudokuDigitOnClickListener(digit))
+        (view.findViewById(R.id.digit8) as Button).setOnClickListener(SudokuDigitOnClickListener(digit))
+        (view.findViewById(R.id.digit9) as Button).setOnClickListener(SudokuDigitOnClickListener(digit))
 
         return view
     }
