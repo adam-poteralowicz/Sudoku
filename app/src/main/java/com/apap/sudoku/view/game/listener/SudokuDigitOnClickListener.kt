@@ -2,10 +2,11 @@ package com.apap.sudoku.view.game.listener
 
 import android.view.View
 import android.widget.TextView
+import androidx.fragment.app.DialogFragment
 import com.apap.sudoku.R
 import com.apap.sudoku.view.game.activity.SudokuActivity
 
-open class SudokuDigitOnClickListener(private val textView: TextView) : View.OnClickListener {
+open class SudokuDigitOnClickListener(private val textView: TextView, private val dialog: DialogFragment) : View.OnClickListener {
 
     override fun onClick(v: View?) {
 
@@ -20,5 +21,7 @@ open class SudokuDigitOnClickListener(private val textView: TextView) : View.OnC
             R.id.digit8 -> SudokuActivity.changeDigit(8, textView)
             R.id.digit9 -> SudokuActivity.changeDigit(9, textView)
         }
+
+        dialog.dismiss()
     }
 }

@@ -12,6 +12,7 @@ import com.apap.sudoku.Sudoku
 import com.apap.sudoku.view.game.adapter.SudokuRecyclerViewAdapter
 import com.apap.sudoku.view.game.dialog.PuzzleNotSolvedDialog
 import com.apap.sudoku.view.game.dialog.PuzzleSolvedDialog
+import com.apap.sudoku.view.game.dialog.SudokuDifficultyChoiceDialog
 import com.apap.sudoku.view.game.dialog.SudokuDigitChoiceDialog
 import com.apap.sudoku.viewmodel.SudokuViewModel
 import com.apap.sudoku.viewmodel.ViewModelFactory
@@ -23,6 +24,7 @@ class SudokuActivity : AppCompatActivity(), SudokuRecyclerViewAdapter.OnSudokuCe
 
     @Inject lateinit var viewModelFactory: ViewModelFactory
     lateinit var sudoku : Sudoku
+    private val model: SudokuViewModel by viewModels() { viewModelFactory }
     private var puzzle: Array<IntArray>? = arrayOf(
         IntArray(9), IntArray(9), IntArray(9),
         IntArray(9), IntArray(9), IntArray(9),
@@ -56,7 +58,7 @@ class SudokuActivity : AppCompatActivity(), SudokuRecyclerViewAdapter.OnSudokuCe
         }
 
         generate_puzzle_button.setOnClickListener {
-            loadPuzzle()
+            showDialog(SudokuDifficultyChoiceDialog.newInstance())
         }
     }
 
@@ -66,10 +68,9 @@ class SudokuActivity : AppCompatActivity(), SudokuRecyclerViewAdapter.OnSudokuCe
         }
     }
 
-    private fun loadPuzzle() {
-        val model: SudokuViewModel by viewModels() { viewModelFactory }
+    fun loadPuzzle(difficulty: String = "easy") {
 
-        model.getSudokuBoard().observe(this, Observer {
+        model.getSudokuBoard(difficulty).observe(this, Observer {
             puzzle = it.getBoard()
             sudoku_recycler_view.adapter = SudokuRecyclerViewAdapter(puzzle!!, this@SudokuActivity)
             sudoku = Sudoku(puzzle!!)

@@ -6,8 +6,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.apap.sudoku.R
+import com.apap.sudoku.view.game.listener.SudokuDigitChangedListener
 
-class SudokuRecyclerViewAdapter(private val array: Array<IntArray>, val onSudokuCellClickListener: OnSudokuCellClickListener) : RecyclerView.Adapter<SudokuViewHolder>() {
+class SudokuRecyclerViewAdapter(private val array: Array<IntArray>, private val onSudokuCellClickListener: OnSudokuCellClickListener) : RecyclerView.Adapter<SudokuViewHolder>() {
 
     interface OnSudokuCellClickListener {
         fun onSudokuCellClick(sudokuDigit: TextView)

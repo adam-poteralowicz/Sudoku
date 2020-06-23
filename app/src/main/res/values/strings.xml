@@ -17,4 +17,8 @@
     <string name="digit_7">7</string>
     <string name="digit_8">8</string>
     <string name="digit_9">9</string>
+    <string name="easy_difficulty_mode_text">EASY</string>
+    <string name="medium_difficulty_mode_text">MEDIUM</string>
+    <string name="hard_difficulty_mode_text">HARD</string>
+    <string name="random_difficulty_mode_text">RANDOM</string>
 </resources>

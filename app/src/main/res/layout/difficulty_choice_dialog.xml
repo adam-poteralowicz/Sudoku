@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/sudokuBackground">
+
+    <Button
+        android:id="@+id/easy_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/easy_difficulty_mode_text"/>
+
+    <Button
+        android:id="@+id/medium_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/easy_mode"
+        android:text="@string/medium_difficulty_mode_text"/>
+
+    <Button
+        android:id="@+id/hard_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/medium_mode"
+        android:text="@string/hard_difficulty_mode_text"/>
+
+    <Button
+        android:id="@+id/random_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/hard_mode"
+        android:text="@string/random_difficulty_mode_text"/>
+</RelativeLayout>

@@ -23,8 +23,8 @@ class SudokuViewModel @Inject constructor(private var getSudokuForDifficultyInte
         disposable.clear()
     }
 
-    fun getSudokuBoard() : LiveData<SudokuBoardResponse> {
-        return fetchSudoku("easy")
+    fun getSudokuBoard(difficulty: String) : LiveData<SudokuBoardResponse> {
+        return fetchSudoku(difficulty)
     }
 
     private fun fetchSudoku(difficulty: String) : LiveData<SudokuBoardResponse> {

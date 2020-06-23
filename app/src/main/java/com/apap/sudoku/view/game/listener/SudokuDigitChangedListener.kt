@@ -1,12 +1,10 @@
-package com.apap.sudoku.view.game.adapter
+package com.apap.sudoku.view.game.listener
 
 import android.text.Editable
 import android.text.TextWatcher
+import com.apap.sudoku.view.game.adapter.SudokuViewHolder
 
-class SudokuDigitChangedListener(
-    private val puzzle: Array<IntArray>,
-    private val holder: SudokuViewHolder
-) : TextWatcher {
+class SudokuDigitChangedListener(private val puzzle: Array<IntArray>, private val holder: SudokuViewHolder) : TextWatcher {
 
     override fun afterTextChanged(s: Editable?) {
         s?.let {
