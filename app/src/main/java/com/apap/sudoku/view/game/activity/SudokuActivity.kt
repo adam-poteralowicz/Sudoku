@@ -1,6 +1,7 @@
 package com.apap.sudoku.view.game.activity
 
 import android.os.Bundle
+import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
@@ -24,12 +25,20 @@ class SudokuActivity : AppCompatActivity(), SudokuRecyclerViewAdapter.OnSudokuCe
     lateinit var viewModelFactory: ViewModelFactory
 
     lateinit var sudoku : Sudoku
+    lateinit var sudokuAdapter : SudokuRecyclerViewAdapter
 
     private var puzzle: Array<IntArray>? = arrayOf(
         IntArray(9), IntArray(9), IntArray(9),
         IntArray(9), IntArray(9), IntArray(9),
         IntArray(9), IntArray(9), IntArray(9)
     )
+
+    companion object {
+
+        fun changeDigit(digit: Int, cell: TextView) {
+            cell.text = digit.toString()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,8 +64,10 @@ class SudokuActivity : AppCompatActivity(), SudokuRecyclerViewAdapter.OnSudokuCe
         }
     }
 
-    override fun onSudokuCellClick() {
-        showDialog(SudokuDigitChoiceDialog.newInstance())
+    override fun onSudokuCellClick(sudokuDigit: TextView) {
+        if (sudokuDigit.isEnabled) {
+            showDialog(SudokuDigitChoiceDialog.newInstance(sudokuDigit))
+        }
     }
 
     private fun loadPuzzle() {

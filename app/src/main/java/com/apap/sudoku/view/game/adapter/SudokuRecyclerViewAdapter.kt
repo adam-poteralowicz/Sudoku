@@ -3,13 +3,14 @@ package com.apap.sudoku.view.game.adapter
 import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.apap.sudoku.R
 
-class SudokuRecyclerViewAdapter(private val array: Array<IntArray>, private val onSudokuCellClickListener: OnSudokuCellClickListener) : RecyclerView.Adapter<SudokuViewHolder>() {
+class SudokuRecyclerViewAdapter(private val array: Array<IntArray>, val onSudokuCellClickListener: OnSudokuCellClickListener) : RecyclerView.Adapter<SudokuViewHolder>() {
 
     interface OnSudokuCellClickListener {
-        fun onSudokuCellClick()
+        fun onSudokuCellClick(sudokuDigit: TextView)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SudokuViewHolder {

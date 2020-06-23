@@ -21,7 +21,7 @@ class SudokuViewHolder(itemView: View, onSudokuCellClickListener: SudokuRecycler
 
     override fun onClick(v: View?) {
         when (v) {
-            itemView -> onSudokuCellClickListener.onSudokuCellClick()
+            itemView -> if (itemView.isEnabled) onSudokuCellClickListener.onSudokuCellClick(mSudokuDigit!!)
         }
     }
 }
