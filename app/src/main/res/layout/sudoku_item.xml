@@ -8,7 +8,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:contentDescription="@string/app_name"
-        android:background="@drawable/sudoku_cell_bg" />
+        android:background="@android:color/transparent" />
 
     <EditText
         android:id="@+id/sudoku_digit"
