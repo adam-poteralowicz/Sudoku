@@ -3,7 +3,7 @@
     <string name="start_game_text">Start Game</string>
     <string name="check_puzzle_text">Check puzzle</string>
     <string name="new_puzzle_button">New puzzle</string>
-    <string name="dialog_ok">OK</string>
+    <string name="dialog_ok">YES</string>
     <string name="puzzle_solved_dialog_title">Puzzled solved!</string>
     <string name="puzzle_solved_question">Do you want to generate new puzzle?</string>
     <string name="dialog_cancel">NO</string>
