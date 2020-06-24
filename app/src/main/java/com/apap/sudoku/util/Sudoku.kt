@@ -1,4 +1,4 @@
-package com.apap.sudoku
+package com.apap.sudoku.util
 
 class Sudoku(private val puzzle: Array<IntArray>) {
 

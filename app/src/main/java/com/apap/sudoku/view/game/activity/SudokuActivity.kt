@@ -8,7 +8,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.apap.sudoku.R
-import com.apap.sudoku.Sudoku
+import com.apap.sudoku.util.Sudoku
 import com.apap.sudoku.view.game.adapter.SudokuRecyclerViewAdapter
 import com.apap.sudoku.view.game.dialog.PuzzleNotSolvedDialog
 import com.apap.sudoku.view.game.dialog.PuzzleSolvedDialog
@@ -42,6 +42,8 @@ class SudokuActivity : AppCompatActivity(), SudokuRecyclerViewAdapter.OnSudokuCe
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sudoku)
         AndroidInjection.inject(this@SudokuActivity)
+        sudoku = Sudoku(puzzle!!)
+
         loadPuzzle()
 
         sudoku_recycler_view.apply {
@@ -52,19 +54,19 @@ class SudokuActivity : AppCompatActivity(), SudokuRecyclerViewAdapter.OnSudokuCe
 
         check_puzzle_button.setOnClickListener {
             when (sudoku.checkCorrectness()) {
-                true -> showDialog(PuzzleSolvedDialog.newInstance())
-                false -> showDialog(PuzzleNotSolvedDialog.newInstance())
+                true -> showDialog(PuzzleSolvedDialog.newInstance(), PuzzleSolvedDialog.TAG)
+                false -> showDialog(PuzzleNotSolvedDialog.newInstance(), PuzzleNotSolvedDialog.TAG)
             }
         }
 
         generate_puzzle_button.setOnClickListener {
-            showDialog(SudokuDifficultyChoiceDialog.newInstance())
+            showDialog(SudokuDifficultyChoiceDialog.newInstance(), SudokuDifficultyChoiceDialog.TAG)
         }
     }
 
     override fun onSudokuCellClick(sudokuDigit: TextView) {
         if (sudokuDigit.isEnabled) {
-            showDialog(SudokuDigitChoiceDialog.newInstance(sudokuDigit))
+            showDialog(SudokuDigitChoiceDialog.newInstance(sudokuDigit), SudokuDigitChoiceDialog.TAG)
         }
     }
 
@@ -77,7 +79,7 @@ class SudokuActivity : AppCompatActivity(), SudokuRecyclerViewAdapter.OnSudokuCe
         })
     }
 
-    private fun showDialog(fragment: DialogFragment) {
-        fragment.show(this@SudokuActivity.supportFragmentManager, fragment.tag)
+    private fun showDialog(fragment: DialogFragment, tag: String) {
+        fragment.show(this@SudokuActivity.supportFragmentManager, tag)
     }
 }
