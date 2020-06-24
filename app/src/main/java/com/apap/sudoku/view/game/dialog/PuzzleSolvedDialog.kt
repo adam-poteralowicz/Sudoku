@@ -8,6 +8,7 @@ import androidx.fragment.app.DialogFragment
 import com.apap.sudoku.R
 import com.apap.sudoku.view.game.activity.SudokuActivity
 import com.apap.sudoku.view.home.HomeActivity
+import kotlinx.android.synthetic.main.activity_sudoku.*
 
 class PuzzleSolvedDialog : DialogFragment() {
 
@@ -20,7 +21,8 @@ class PuzzleSolvedDialog : DialogFragment() {
                 .setTitle(R.string.puzzle_solved_dialog_title)
                 .setMessage(R.string.puzzle_solved_question)
                 .setPositiveButton(R.string.puzzle_solved_dialog_ok) { _, _ ->
-                    startActivity(Intent(it, SudokuActivity::class.java))
+                    (activity as SudokuActivity).generate_puzzle_button.performClick()
+                    dismiss()
                 }
                 .setNegativeButton(getString(R.string.dialog_cancel)) { _, _ ->
                     startActivity(Intent(it, HomeActivity::class.java))

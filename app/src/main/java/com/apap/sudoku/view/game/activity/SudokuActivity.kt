@@ -42,7 +42,6 @@ class SudokuActivity : AppCompatActivity(), SudokuRecyclerViewAdapter.OnSudokuCe
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sudoku)
         AndroidInjection.inject(this@SudokuActivity)
-        sudoku = Sudoku(puzzle!!)
 
         loadPuzzle()
 
@@ -79,7 +78,7 @@ class SudokuActivity : AppCompatActivity(), SudokuRecyclerViewAdapter.OnSudokuCe
         })
     }
 
-    private fun showDialog(fragment: DialogFragment, tag: String) {
+    fun showDialog(fragment: DialogFragment, tag: String) {
         fragment.show(this@SudokuActivity.supportFragmentManager, tag)
     }
 }
