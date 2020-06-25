@@ -34,10 +34,8 @@ class Sudoku(private val puzzle: Array<IntArray>) {
 
         for (i in 0 until puzzle.size) {
             column = IntArray(puzzle.size)
-            var j = 0
             puzzle.indices.forEach { row ->
-                column[j] = puzzle[row][i]
-                j++
+                column[row] = puzzle[row][i]
             }
 
             correctness = isSumCorrect(column)

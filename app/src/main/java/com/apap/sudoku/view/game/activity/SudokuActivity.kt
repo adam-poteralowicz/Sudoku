@@ -25,7 +25,7 @@ class SudokuActivity : AppCompatActivity(), SudokuRecyclerViewAdapter.OnSudokuCe
     @Inject lateinit var viewModelFactory: ViewModelFactory
     lateinit var sudoku : Sudoku
     private val model: SudokuViewModel by viewModels() { viewModelFactory }
-    private var puzzle: Array<IntArray>? = arrayOf(
+    private var puzzle: Array<IntArray> = arrayOf(
         IntArray(9), IntArray(9), IntArray(9),
         IntArray(9), IntArray(9), IntArray(9),
         IntArray(9), IntArray(9), IntArray(9)
@@ -54,7 +54,7 @@ class SudokuActivity : AppCompatActivity(), SudokuRecyclerViewAdapter.OnSudokuCe
 
     override fun onStart() {
         super.onStart()
-        sudoku = Sudoku(puzzle!!)
+        sudoku = Sudoku(puzzle)
 
         check_puzzle_button.setOnClickListener {
             when (sudoku.checkCorrectness()) {
@@ -78,7 +78,7 @@ class SudokuActivity : AppCompatActivity(), SudokuRecyclerViewAdapter.OnSudokuCe
 
         model.getSudokuBoard(difficulty).observe(this, Observer {
             puzzle = it.getBoard()
-            sudoku_recycler_view.adapter = SudokuRecyclerViewAdapter(puzzle!!, this@SudokuActivity)
+            sudoku_recycler_view.adapter = SudokuRecyclerViewAdapter(puzzle, this@SudokuActivity)
         })
     }
 
