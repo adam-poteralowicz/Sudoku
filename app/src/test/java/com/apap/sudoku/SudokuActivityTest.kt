@@ -2,7 +2,6 @@ package com.apap.sudoku
 
 import android.os.Build
 import com.apap.sudoku.view.game.activity.SudokuActivity
-import com.apap.sudoku.view.game.dialog.PuzzleNotSolvedDialog
 import com.apap.sudoku.view.game.dialog.SudokuDifficultyChoiceDialog
 import com.apap.sudoku.view.game.dialog.SudokuDigitChoiceDialog
 import kotlinx.android.synthetic.main.activity_sudoku.*
@@ -37,16 +36,6 @@ class SudokuActivityTest {
         item.itemView.performClick()
 
         val expectedFragment = activity.supportFragmentManager.findFragmentByTag(SudokuDigitChoiceDialog.TAG)
-        assertNotNull(expectedFragment)
-    }
-
-    @Test
-    fun shouldShowPuzzleNotSolvedDialogOnCheckPuzzleClickWhenBoardHasBlanks() {
-
-        val activity = Robolectric.setupActivity(SudokuActivity::class.java)
-        activity.check_puzzle_button.performClick()
-
-        val expectedFragment = activity.supportFragmentManager.findFragmentByTag(PuzzleNotSolvedDialog.TAG)
         assertNotNull(expectedFragment)
     }
 }

@@ -50,6 +50,11 @@ class SudokuActivity : AppCompatActivity(), SudokuRecyclerViewAdapter.OnSudokuCe
             adapter = SudokuRecyclerViewAdapter(puzzle!!, this@SudokuActivity)
         }
         sudoku_recycler_view.adapter?.notifyDataSetChanged()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        sudoku = Sudoku(puzzle!!)
 
         check_puzzle_button.setOnClickListener {
             when (sudoku.checkCorrectness()) {
@@ -74,7 +79,6 @@ class SudokuActivity : AppCompatActivity(), SudokuRecyclerViewAdapter.OnSudokuCe
         model.getSudokuBoard(difficulty).observe(this, Observer {
             puzzle = it.getBoard()
             sudoku_recycler_view.adapter = SudokuRecyclerViewAdapter(puzzle!!, this@SudokuActivity)
-            sudoku = Sudoku(puzzle!!)
         })
     }
 
