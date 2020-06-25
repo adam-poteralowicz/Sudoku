@@ -16,20 +16,17 @@ class Sudoku(private val puzzle: Array<IntArray>) {
     }
 
     private fun checkRows(): Boolean {
-        var correctness = false
 
         puzzle.indices.forEach { row ->
-            correctness = isSumCorrect(puzzle[row])
-            if (!correctness) {
+            if (!isSumCorrect(puzzle[row])) {
                 return false
             }
         }
 
-        return correctness
+        return true
     }
 
     private fun checkColumns() : Boolean {
-        var correctness = false
         var column : IntArray
 
         for (i in 0 until puzzle.size) {
@@ -38,13 +35,12 @@ class Sudoku(private val puzzle: Array<IntArray>) {
                 column[row] = puzzle[row][i]
             }
 
-            correctness = isSumCorrect(column)
-            if (!correctness) {
+            if (!isSumCorrect(column)) {
                 return false
             }
         }
 
-        return correctness
+        return true
     }
 
     private fun checkMatrices() : Boolean {
