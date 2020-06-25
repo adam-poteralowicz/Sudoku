@@ -3,7 +3,7 @@ package com.apap.sudoku.util
 class Sudoku(private val puzzle: Array<IntArray>) {
 
     fun checkCorrectness() : Boolean =
-        if (blanksRemaining()) false
+        if (blanksRemaining() || puzzle.isEmpty()) false
         else checkRows() && checkColumns() && checkMatrices()
 
     private fun blanksRemaining(): Boolean {
