@@ -74,7 +74,7 @@ class SudokuActivity : AppCompatActivity(), SudokuRecyclerViewAdapter.OnSudokuCe
         }
     }
 
-    fun loadPuzzle(difficulty: String = "easy") {
+    fun loadPuzzle(difficulty: String = "random") {
 
         model.getSudokuBoard(difficulty).observe(this, Observer {
             puzzle = it.getBoard()
