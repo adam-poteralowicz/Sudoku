@@ -1,7 +1,7 @@
 package com.apap.sudoku.di.component
 
 import com.apap.sudoku.di.module.HomeActivityModule
-import com.apap.sudoku.view.home.HomeActivity
+import com.apap.sudoku.view.home.activity.HomeActivity
 import dagger.Subcomponent
 import dagger.android.AndroidInjector
 

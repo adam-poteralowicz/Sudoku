@@ -3,7 +3,7 @@ package com.apap.sudoku
 import android.content.Intent
 import android.os.Build
 import com.apap.sudoku.view.game.activity.SudokuActivity
-import com.apap.sudoku.view.home.HomeActivity
+import com.apap.sudoku.view.home.activity.HomeActivity
 import kotlinx.android.synthetic.main.activity_welcome.*
 import org.junit.Assert
 import org.junit.Test

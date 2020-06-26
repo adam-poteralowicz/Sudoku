@@ -82,7 +82,7 @@ class SudokuActivity : AppCompatActivity(), SudokuRecyclerViewAdapter.OnSudokuCe
         })
     }
 
-    fun showDialog(fragment: DialogFragment, tag: String) {
+    private fun showDialog(fragment: DialogFragment, tag: String) {
         fragment.show(this@SudokuActivity.supportFragmentManager, tag)
     }
 }

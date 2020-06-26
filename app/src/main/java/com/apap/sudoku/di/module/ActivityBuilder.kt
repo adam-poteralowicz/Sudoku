@@ -4,7 +4,7 @@ import android.app.Activity
 import com.apap.sudoku.di.component.HomeActivityComponent
 import com.apap.sudoku.di.component.SudokuActivityComponent
 import com.apap.sudoku.view.game.activity.SudokuActivity
-import com.apap.sudoku.view.home.HomeActivity
+import com.apap.sudoku.view.home.activity.HomeActivity
 import dagger.Binds
 import dagger.Module
 import dagger.android.ActivityKey

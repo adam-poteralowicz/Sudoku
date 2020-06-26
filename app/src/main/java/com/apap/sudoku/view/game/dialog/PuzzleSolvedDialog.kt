@@ -7,7 +7,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import com.apap.sudoku.R
 import com.apap.sudoku.view.game.activity.SudokuActivity
-import com.apap.sudoku.view.home.HomeActivity
+import com.apap.sudoku.view.home.activity.HomeActivity
 import kotlinx.android.synthetic.main.activity_sudoku.*
 
 class PuzzleSolvedDialog : DialogFragment() {

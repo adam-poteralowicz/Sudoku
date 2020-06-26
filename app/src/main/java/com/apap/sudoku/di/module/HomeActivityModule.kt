@@ -1,6 +1,6 @@
 package com.apap.sudoku.di.module
 
-import com.apap.sudoku.view.home.HomeActivity
+import com.apap.sudoku.view.home.activity.HomeActivity
 import dagger.Module
 import dagger.Provides
 

@@ -87,8 +87,7 @@ class SudokuActivityInstrumentedTest {
     fun shouldDismissPuzzleNotSolvedDialogOnOKClick() {
         onView(withId(R.id.check_puzzle_button)).perform(click())
         onView(withText(R.string.puzzle_not_solved_dialog_title)).check(matches(isDisplayed()))
-        onView(withText(R.string.puzzle_not_solved_dialog_ok)).inRoot(RootMatchers.isDialog())
-            .perform(click())
+        onView(withText(R.string.puzzle_not_solved_dialog_ok)).inRoot(RootMatchers.isDialog()).perform(click())
         onView(withId(R.id.sudoku_recycler_view)).check(matches(isDisplayed()))
     }
 }

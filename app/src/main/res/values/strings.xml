@@ -7,6 +7,7 @@
     <string name="puzzle_solved_dialog_ok">YES</string>
     <string name="puzzle_solved_dialog_title">Puzzled solved!</string>
     <string name="puzzle_solved_question">Do you want to generate new puzzle?</string>
+    <string name="dialog_confirm">YES</string>
     <string name="dialog_cancel">NO</string>
     <string name="puzzle_not_solved_dialog_title">Puzzle not solved! Try again</string>
     <string name="digit_1">1</string>
@@ -22,4 +23,5 @@
     <string name="medium_difficulty_mode_text">MEDIUM</string>
     <string name="hard_difficulty_mode_text">HARD</string>
     <string name="random_difficulty_mode_text">RANDOM</string>
+    <string name="quit_app_question">Are you sure you want to quit?</string>
 </resources>
