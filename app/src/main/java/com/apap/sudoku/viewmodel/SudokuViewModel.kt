@@ -3,12 +3,12 @@ package com.apap.sudoku.viewmodel
 import android.widget.TextView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.apap.sudoku.data.interactor.GetSudokuForDifficultyInteractor
+import com.apap.sudoku.data.interactor.GetSudokuForDifficulty
 import com.apap.sudoku.data.model.SudokuBoardResponse
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
-class SudokuViewModel @Inject constructor(private var getSudokuForDifficultyInteractor: GetSudokuForDifficultyInteractor) : ViewModel() {
+class SudokuViewModel @Inject constructor(private var getSudokuForDifficulty: GetSudokuForDifficulty) : ViewModel() {
 
     companion object {
         val disposable = CompositeDisposable()
@@ -28,6 +28,6 @@ class SudokuViewModel @Inject constructor(private var getSudokuForDifficultyInte
     }
 
     private fun fetchSudoku(difficulty: String) : LiveData<SudokuBoardResponse> {
-        return getSudokuForDifficultyInteractor.getPuzzle(difficulty)
+        return getSudokuForDifficulty(difficulty)
     }
 }

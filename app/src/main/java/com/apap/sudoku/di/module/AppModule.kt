@@ -1,6 +1,6 @@
 package com.apap.sudoku.di.module
 
-import com.apap.sudoku.data.interactor.GetSudokuForDifficultyInteractor
+import com.apap.sudoku.data.interactor.GetSudokuForDifficulty
 import com.apap.sudoku.data.source.repository.SudokuRepositoryImpl
 import com.apap.sudoku.di.component.HomeActivityComponent
 import com.apap.sudoku.di.component.SudokuActivityComponent
@@ -40,8 +40,8 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideGetSudokuForDifficultyInteractor(sudokuRepository: SudokuRepositoryImpl) : GetSudokuForDifficultyInteractor {
-        return GetSudokuForDifficultyInteractor(sudokuRepository)
+    fun provideGetSudokuForDifficulty(sudokuRepository: SudokuRepositoryImpl) : GetSudokuForDifficulty {
+        return GetSudokuForDifficulty(sudokuRepository)
     }
 
 }

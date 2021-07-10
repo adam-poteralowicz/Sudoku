@@ -5,9 +5,9 @@ import com.apap.sudoku.data.model.SudokuBoardResponse
 import com.apap.sudoku.data.source.repository.SudokuRepositoryImpl
 import javax.inject.Inject
 
-class GetSudokuForDifficultyInteractor @Inject constructor(var sudokuRepository: SudokuRepositoryImpl) {
+class GetSudokuForDifficulty @Inject constructor(var sudokuRepository: SudokuRepositoryImpl) {
 
-    fun getPuzzle(difficulty: String): LiveData<SudokuBoardResponse> {
+    operator fun invoke(difficulty: String): LiveData<SudokuBoardResponse> {
         return sudokuRepository.getSudoku(difficulty)
     }
 }

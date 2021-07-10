@@ -26,7 +26,6 @@ class PuzzleNotSolvedDialog : DialogFragment() {
     companion object {
         const val TAG = "NOT_SOLVED"
 
-        @JvmStatic
         fun newInstance() : PuzzleNotSolvedDialog {
             return PuzzleNotSolvedDialog()
         }

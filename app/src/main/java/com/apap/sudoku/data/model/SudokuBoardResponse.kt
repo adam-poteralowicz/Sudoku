@@ -7,17 +7,13 @@ class SudokuBoardResponse {
     @SerializedName("board")
     private val _board: Array<IntArray>? = null
 
-    fun getBoard() : Array<IntArray> {
-        return _board!!
+    fun getBoard(): Array<IntArray> {
+        return _board ?: emptyArray()
     }
 
     override fun toString(): String {
-
-        var values = ""
-        for (element in _board!!) {
-            values += "${element.contentToString()}\n"
-        }
-
-        return values
+        return _board?.map { element ->
+            "${element.contentToString()}\n"
+        }.toString()
     }
 }

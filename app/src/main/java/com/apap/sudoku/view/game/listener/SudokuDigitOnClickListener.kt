@@ -6,7 +6,10 @@ import androidx.fragment.app.DialogFragment
 import com.apap.sudoku.R
 import com.apap.sudoku.view.game.activity.SudokuActivity
 
-open class SudokuDigitOnClickListener(private val textView: TextView, private val dialog: DialogFragment) : View.OnClickListener {
+open class SudokuDigitOnClickListener(
+    private val textView: TextView,
+    private val dialog: DialogFragment
+) : View.OnClickListener {
 
     override fun onClick(v: View?) {
 

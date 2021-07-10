@@ -37,7 +37,6 @@ class SudokuDifficultyChoiceDialog : DialogFragment(), View.OnClickListener {
     companion object {
         const val TAG = "DIFFICULTY"
 
-        @JvmStatic
         fun newInstance() : SudokuDifficultyChoiceDialog {
 
             return SudokuDifficultyChoiceDialog()

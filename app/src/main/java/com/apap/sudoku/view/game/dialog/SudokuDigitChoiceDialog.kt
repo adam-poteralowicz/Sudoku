@@ -16,8 +16,7 @@ class SudokuDigitChoiceDialog(private val digit: TextView) : DialogFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.digit_choice_dialog, container, true)
 
-        dialog!!.window!!.setGravity(Gravity.CENTER_HORIZONTAL)
-        dialog!!.window!!.setGravity(Gravity.BOTTOM)
+        dialog?.window?.setGravity(Gravity.CENTER_HORIZONTAL + Gravity.BOTTOM)
 
         (view.findViewById(R.id.digit1) as Button).setOnClickListener(SudokuDigitOnClickListener(digit, this))
         (view.findViewById(R.id.digit2) as Button).setOnClickListener(SudokuDigitOnClickListener(digit, this))
@@ -35,7 +34,6 @@ class SudokuDigitChoiceDialog(private val digit: TextView) : DialogFragment() {
     companion object {
         const val TAG = "CHOICE"
 
-        @JvmStatic
         fun newInstance(digit: TextView) : SudokuDigitChoiceDialog {
 
             return SudokuDigitChoiceDialog(digit)

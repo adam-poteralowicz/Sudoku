@@ -47,7 +47,7 @@ class SudokuActivity : AppCompatActivity(), SudokuRecyclerViewAdapter.OnSudokuCe
 
         sudoku_recycler_view.apply {
             layoutManager = GridLayoutManager(this@SudokuActivity, 9)
-            adapter = SudokuRecyclerViewAdapter(puzzle!!, this@SudokuActivity)
+            adapter = SudokuRecyclerViewAdapter(puzzle, this@SudokuActivity)
         }
         sudoku_recycler_view.adapter?.notifyDataSetChanged()
     }

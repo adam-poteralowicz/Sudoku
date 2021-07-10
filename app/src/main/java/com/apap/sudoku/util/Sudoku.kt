@@ -2,14 +2,15 @@ package com.apap.sudoku.util
 
 class Sudoku(private val puzzle: Array<IntArray>) {
 
-    fun checkCorrectness() : Boolean =
+    fun checkCorrectness(): Boolean =
         if (blanksRemaining() || puzzle.isEmpty()) false
         else checkRows() && checkColumns() && checkMatrices()
 
     private fun blanksRemaining(): Boolean {
         val blanks = (puzzle.indices).flatMap { row ->
-            (puzzle[row].indices)
-                .filter { column -> puzzle[row][column] == 0 }
+            (puzzle[row].indices).filter { column ->
+                puzzle[row][column] == 0
+            }
         }
 
         return blanks.isNotEmpty()
@@ -26,8 +27,8 @@ class Sudoku(private val puzzle: Array<IntArray>) {
         return true
     }
 
-    private fun checkColumns() : Boolean {
-        var column : IntArray
+    private fun checkColumns(): Boolean {
+        var column: IntArray
 
         for (i in 0 until puzzle.size) {
             column = IntArray(puzzle.size)
@@ -43,7 +44,7 @@ class Sudoku(private val puzzle: Array<IntArray>) {
         return true
     }
 
-    private fun checkMatrices() : Boolean {
+    private fun checkMatrices(): Boolean {
 
         return checkMatrix(0, 2, 0, 2)
                 && checkMatrix(3, 5, 0, 2)
@@ -56,7 +57,7 @@ class Sudoku(private val puzzle: Array<IntArray>) {
                 && checkMatrix(6, 8, 6, 8)
     }
 
-    private fun checkMatrix(index1: Int, index2: Int, index3: Int, index4: Int) : Boolean {
+    private fun checkMatrix(index1: Int, index2: Int, index3: Int, index4: Int): Boolean {
 
         val matrix = puzzle.sliceArray(index1..index2)
         val values = ArrayList<Int>()
@@ -78,7 +79,7 @@ class Sudoku(private val puzzle: Array<IntArray>) {
         return array.reduce { acc, digit -> acc + digit } == 45
     }
 
-    private fun isSumCorrect(list: ArrayList<Int>) : Boolean {
+    private fun isSumCorrect(list: ArrayList<Int>): Boolean {
         return list.distinct().reduce { acc, digit -> acc + digit } == 45
     }
 }

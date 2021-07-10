@@ -31,7 +31,6 @@ class QuitConfirmationDialog : DialogFragment() {
     companion object {
         const val TAG = "QUIT"
 
-        @JvmStatic
         fun newInstance() : QuitConfirmationDialog {
             return QuitConfirmationDialog()
         }
