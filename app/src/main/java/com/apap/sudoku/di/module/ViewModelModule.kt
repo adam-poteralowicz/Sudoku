@@ -8,10 +8,8 @@ import com.apap.sudoku.viewmodel.ViewModelKey
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
-import javax.inject.Singleton
 
 @Module
-@Singleton
 abstract class ViewModelModule {
 
     @Binds

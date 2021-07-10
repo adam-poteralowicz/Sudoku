@@ -8,7 +8,6 @@ import dagger.android.AndroidInjector
 @Subcomponent(modules = [HomeActivityModule::class])
 interface HomeActivityComponent : AndroidInjector<HomeActivity?> {
 
-    @Subcomponent.Builder
-    abstract class Builder : AndroidInjector.Builder<HomeActivity?>()
-
+    @Subcomponent.Factory
+    abstract class Factory : AndroidInjector.Factory<HomeActivity?>
 }

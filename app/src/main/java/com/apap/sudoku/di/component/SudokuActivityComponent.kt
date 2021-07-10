@@ -8,7 +8,6 @@ import dagger.android.AndroidInjector
 @Subcomponent(modules = [SudokuActivityModule::class])
 interface SudokuActivityComponent : AndroidInjector<SudokuActivity?> {
 
-    @Subcomponent.Builder
-    abstract class Builder : AndroidInjector.Builder<SudokuActivity?>()
-
+    @Subcomponent.Factory
+    abstract class Factory : AndroidInjector.Factory<SudokuActivity?>
 }
