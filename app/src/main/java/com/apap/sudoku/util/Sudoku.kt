@@ -3,8 +3,11 @@ package com.apap.sudoku.util
 class Sudoku(private val puzzle: Array<IntArray>) {
 
     fun checkCorrectness(): Boolean =
-        if (blanksRemaining() || puzzle.isEmpty()) false
-        else checkRows() && checkColumns() && checkMatrices()
+        when {
+            puzzle.isEmpty() || blanksRemaining() -> false
+            checkRows() && checkColumns() && checkMatrices() -> true
+            else -> false
+        }
 
     private fun blanksRemaining(): Boolean {
         val blanks = (puzzle.indices).flatMap { row ->
@@ -16,23 +19,14 @@ class Sudoku(private val puzzle: Array<IntArray>) {
         return blanks.isNotEmpty()
     }
 
-    private fun checkRows(): Boolean {
-
-        puzzle.indices.forEach { row ->
-            if (!isSumCorrect(puzzle[row])) {
-                return false
-            }
-        }
-
-        return true
-    }
+    private fun checkRows(): Boolean = puzzle.indices.all { row -> isSumCorrect(puzzle[row]) }
 
     private fun checkColumns(): Boolean {
         var column: IntArray
 
-        for (i in 0 until puzzle.size) {
+        for (element in puzzle) {
             column = IntArray(puzzle.size)
-            puzzle.indices.forEach { row ->
+            puzzle.indices.forEachIndexed { i, row ->
                 column[row] = puzzle[row][i]
             }
 
@@ -62,7 +56,7 @@ class Sudoku(private val puzzle: Array<IntArray>) {
         val matrix = puzzle.sliceArray(index1..index2)
         val values = ArrayList<Int>()
 
-        for (i in 0 until matrix.size) {
+        matrix.forEachIndexed { i, _ ->
             matrix[i].sliceArray(index3..index4).forEach {
                 values.add(it)
             }
