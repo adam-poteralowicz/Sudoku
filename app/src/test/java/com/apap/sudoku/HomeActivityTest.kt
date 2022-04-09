@@ -2,7 +2,7 @@ package com.apap.sudoku
 
 import android.content.Intent
 import android.os.Build
-import com.apap.sudoku.databinding.ActivityWelcomeBinding
+import com.apap.sudoku.databinding.HomeActivityBinding
 import com.apap.sudoku.view.game.activity.SudokuActivity
 import com.apap.sudoku.view.home.activity.HomeActivity
 import org.junit.Assert
@@ -20,7 +20,7 @@ import org.robolectric.annotation.Config
 class HomeActivityTest {
 
     private lateinit var activity: HomeActivity
-    private lateinit var binding: ActivityWelcomeBinding
+    private lateinit var binding: HomeActivityBinding
 
     @Before
     fun setUp() {

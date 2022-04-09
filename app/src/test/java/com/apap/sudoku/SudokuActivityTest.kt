@@ -1,7 +1,7 @@
 package com.apap.sudoku
 
 import android.os.Build
-import com.apap.sudoku.databinding.ActivitySudokuBinding
+import com.apap.sudoku.databinding.SudokuActivityBinding
 import com.apap.sudoku.view.game.activity.SudokuActivity
 import com.apap.sudoku.view.game.dialog.SudokuDifficultyChoiceDialog
 import com.apap.sudoku.view.game.dialog.SudokuDigitChoiceDialog
@@ -18,7 +18,7 @@ import org.robolectric.annotation.Config
 class SudokuActivityTest {
 
     private lateinit var activity: SudokuActivity
-    private lateinit var binding: ActivitySudokuBinding
+    private lateinit var binding: SudokuActivityBinding
 
     @Before
     fun setUp() {

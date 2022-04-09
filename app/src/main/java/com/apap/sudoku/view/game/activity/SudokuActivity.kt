@@ -8,7 +8,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.apap.sudoku.R
-import com.apap.sudoku.databinding.ActivitySudokuBinding
+import com.apap.sudoku.databinding.SudokuActivityBinding
 import com.apap.sudoku.util.Sudoku
 import com.apap.sudoku.view.game.adapter.SudokuRecyclerViewAdapter
 import com.apap.sudoku.view.game.dialog.PuzzleNotSolvedDialog
@@ -23,7 +23,7 @@ import javax.inject.Inject
 class SudokuActivity : AppCompatActivity(), SudokuRecyclerViewAdapter.OnSudokuCellClickListener {
 
     @Inject lateinit var viewModelFactory: ViewModelFactory
-    lateinit var binding: ActivitySudokuBinding
+    lateinit var binding: SudokuActivityBinding
     private lateinit var sudoku : Sudoku
     private val model: SudokuViewModel by viewModels() { viewModelFactory }
     private var puzzle: Array<IntArray> = arrayOf(
@@ -41,9 +41,9 @@ class SudokuActivity : AppCompatActivity(), SudokuRecyclerViewAdapter.OnSudokuCe
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sudoku)
+        setContentView(R.layout.sudoku_activity)
         AndroidInjection.inject(this@SudokuActivity)
-        binding = ActivitySudokuBinding.inflate(layoutInflater)
+        binding = SudokuActivityBinding.inflate(layoutInflater)
 
         loadPuzzle()
 
