@@ -18,7 +18,7 @@ class HomeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_welcome)
         binding = ActivityWelcomeBinding.inflate(layoutInflater)
 
-        binding.sudokuStartButton.setOnClickListener { _ ->
+        binding.sudokuStartButton.setOnClickListener {
             val sudokuIntent = Intent(this, SudokuActivity::class.java )
             startActivity(sudokuIntent)
         }

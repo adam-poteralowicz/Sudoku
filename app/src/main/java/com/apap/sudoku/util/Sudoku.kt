@@ -5,7 +5,7 @@ class Sudoku(private val puzzle: Array<IntArray>) {
     fun checkCorrectness(): Boolean =
         when {
             puzzle.isEmpty() || blanksRemaining() -> false
-            checkRows() && checkColumns() && checkMatrices() -> true
+            checkRows() && checkColumns() && validateMatrix() -> true
             else -> false
         }
 
@@ -24,9 +24,9 @@ class Sudoku(private val puzzle: Array<IntArray>) {
     private fun checkColumns(): Boolean {
         var column: IntArray
 
-        for (element in puzzle) {
+        for (i in puzzle.indices) {
             column = IntArray(puzzle.size)
-            puzzle.indices.forEachIndexed { i, row ->
+            puzzle.indices.forEach { row ->
                 column[row] = puzzle[row][i]
             }
 
@@ -38,20 +38,20 @@ class Sudoku(private val puzzle: Array<IntArray>) {
         return true
     }
 
-    private fun checkMatrices(): Boolean {
+    private fun validateMatrix(): Boolean {
 
-        return checkMatrix(0, 2, 0, 2)
-                && checkMatrix(3, 5, 0, 2)
-                && checkMatrix(6, 8, 0, 2)
-                && checkMatrix(0, 2, 3, 5)
-                && checkMatrix(3, 5, 3, 5)
-                && checkMatrix(6, 8, 3, 5)
-                && checkMatrix(0, 2, 6, 8)
-                && checkMatrix(3, 5, 6, 8)
-                && checkMatrix(6, 8, 6, 8)
+        return validateSubMatrix(0, 2, 0, 2)
+                && validateSubMatrix(3, 5, 0, 2)
+                && validateSubMatrix(6, 8, 0, 2)
+                && validateSubMatrix(0, 2, 3, 5)
+                && validateSubMatrix(3, 5, 3, 5)
+                && validateSubMatrix(6, 8, 3, 5)
+                && validateSubMatrix(0, 2, 6, 8)
+                && validateSubMatrix(3, 5, 6, 8)
+                && validateSubMatrix(6, 8, 6, 8)
     }
 
-    private fun checkMatrix(index1: Int, index2: Int, index3: Int, index4: Int): Boolean {
+    private fun validateSubMatrix(index1: Int, index2: Int, index3: Int, index4: Int): Boolean {
 
         val matrix = puzzle.sliceArray(index1..index2)
         val values = ArrayList<Int>()
