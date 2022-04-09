@@ -1,11 +1,12 @@
 package com.apap.sudoku
 
 import android.os.Build
+import com.apap.sudoku.databinding.ActivitySudokuBinding
 import com.apap.sudoku.view.game.activity.SudokuActivity
 import com.apap.sudoku.view.game.dialog.SudokuDifficultyChoiceDialog
 import com.apap.sudoku.view.game.dialog.SudokuDigitChoiceDialog
-import kotlinx.android.synthetic.main.activity_sudoku.*
 import org.junit.Assert.assertNotNull
+import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.Robolectric
@@ -16,11 +17,18 @@ import org.robolectric.annotation.Config
 @Config(sdk = [Build.VERSION_CODES.P])
 class SudokuActivityTest {
 
+    private lateinit var activity: SudokuActivity
+    private lateinit var binding: ActivitySudokuBinding
+
+    @Before
+    fun setUp() {
+        activity = Robolectric.setupActivity(SudokuActivity::class.java)
+        binding = activity.binding
+    }
+
     @Test
     fun shouldShowDifficultyChoiceDialogOnNewPuzzleClick() {
-
-        val activity = Robolectric.setupActivity(SudokuActivity::class.java)
-        activity.generate_puzzle_button.performClick()
+        binding.generatePuzzleButton.performClick()
 
         val expectedFragment = activity.supportFragmentManager.findFragmentByTag(SudokuDifficultyChoiceDialog.TAG)
         assertNotNull(expectedFragment)
@@ -28,9 +36,7 @@ class SudokuActivityTest {
 
     @Test
     fun shouldShowDigitChoiceDialogOnSudokuCellClick() {
-
-        val activity = Robolectric.setupActivity(SudokuActivity::class.java)
-        val item = activity.sudoku_recycler_view.findViewHolderForAdapterPosition(0)
+        val item = activity.binding.sudokuRecyclerView.findViewHolderForAdapterPosition(0)
         assertNotNull(item)
         assertNotNull(item!!.itemView)
         item.itemView.performClick()

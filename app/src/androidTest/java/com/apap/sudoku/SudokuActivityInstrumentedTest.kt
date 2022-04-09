@@ -39,15 +39,7 @@ class SudokuActivityInstrumentedTest {
     fun shouldDisplayDigitChoiceDialogOnSudokuCellClick() {
         onView(withId(R.id.sudoku_recycler_view)).perform(click())
 
-        onView(withText("1")).check(matches(isDisplayed()))
-        onView(withText("2")).check(matches(isDisplayed()))
-        onView(withText("3")).check(matches(isDisplayed()))
-        onView(withText("4")).check(matches(isDisplayed()))
-        onView(withText("5")).check(matches(isDisplayed()))
-        onView(withText("6")).check(matches(isDisplayed()))
-        onView(withText("7")).check(matches(isDisplayed()))
-        onView(withText("8")).check(matches(isDisplayed()))
-        onView(withText("9")).check(matches(isDisplayed()))
+        for (i in 1..9) { checkIsDigitDisplayed(i.toString()) }
     }
 
     @Test
@@ -89,5 +81,9 @@ class SudokuActivityInstrumentedTest {
         onView(withText(R.string.puzzle_not_solved_dialog_title)).check(matches(isDisplayed()))
         onView(withText(R.string.puzzle_not_solved_dialog_ok)).inRoot(RootMatchers.isDialog()).perform(click())
         onView(withId(R.id.sudoku_recycler_view)).check(matches(isDisplayed()))
+    }
+
+    private fun checkIsDigitDisplayed(digit: String) {
+        onView(withText(digit)).check(matches(isDisplayed()))
     }
 }

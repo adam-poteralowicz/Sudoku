@@ -5,17 +5,20 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
 import com.apap.sudoku.R
+import com.apap.sudoku.databinding.ActivityWelcomeBinding
 import com.apap.sudoku.view.game.activity.SudokuActivity
 import com.apap.sudoku.view.home.dialog.QuitConfirmationDialog
-import kotlinx.android.synthetic.main.activity_welcome.*
 
 class HomeActivity : AppCompatActivity() {
+
+    lateinit var binding: ActivityWelcomeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_welcome)
+        binding = ActivityWelcomeBinding.inflate(layoutInflater)
 
-        sudoku_start_button.setOnClickListener { _ ->
+        binding.sudokuStartButton.setOnClickListener { _ ->
             val sudokuIntent = Intent(this, SudokuActivity::class.java )
             startActivity(sudokuIntent)
         }
