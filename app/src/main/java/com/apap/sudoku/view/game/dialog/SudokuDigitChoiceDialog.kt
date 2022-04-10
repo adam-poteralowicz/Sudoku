@@ -11,6 +11,7 @@ import androidx.fragment.app.DialogFragment
 import com.apap.sudoku.R
 import com.apap.sudoku.view.game.listener.SudokuDigitOnClickListener
 
+// TODO: ViewBinding
 class SudokuDigitChoiceDialog(private val digit: TextView) : DialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

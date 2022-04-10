@@ -10,7 +10,7 @@ import kotlin.system.exitProcess
 
 class QuitConfirmationDialog : DialogFragment() {
 
-    var dialog : AlertDialog? = null
+    private lateinit var dialog : AlertDialog
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
@@ -25,7 +25,7 @@ class QuitConfirmationDialog : DialogFragment() {
                     dismiss()
                 }.create()
         }
-        return dialog!!
+        return dialog
     }
 
     companion object {

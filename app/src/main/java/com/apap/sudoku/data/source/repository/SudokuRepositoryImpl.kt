@@ -23,6 +23,7 @@ class SudokuRepositoryImpl : SudokuRepository {
 
             override fun onResponse(call: Call<SudokuBoardResponse>, response: Response<SudokuBoardResponse>) {
                 if (response.isSuccessful) {
+                    Timber.d("${javaClass.name}|| getSudoku -- Success : ${response.body()}")
                     responseData.value = response.body()
                 }
             }

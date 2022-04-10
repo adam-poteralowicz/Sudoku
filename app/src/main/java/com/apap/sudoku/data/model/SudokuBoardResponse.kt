@@ -1,19 +1,14 @@
 package com.apap.sudoku.data.model
 
+import com.apap.sudoku.util.Board
 import com.google.gson.annotations.SerializedName
 
 class SudokuBoardResponse {
 
     @SerializedName("board")
-    private val _board: Array<IntArray>? = null
+    private lateinit var board: Array<Board.Row>
 
-    fun getBoard(): Array<IntArray> {
-        return _board ?: emptyArray()
-    }
+    fun getBoard() = board
 
-    override fun toString(): String {
-        return _board?.map { element ->
-            "${element.contentToString()}\n"
-        }.toString()
-    }
+    override fun toString() = board.map { element -> "${element.contentToString()}\n" }.toString()
 }

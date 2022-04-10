@@ -1,8 +1,8 @@
 package com.apap.sudoku.util
 
-class Sudoku(private val puzzle: Array<IntArray>) {
+class Sudoku(private val puzzle: Array<Board.Row>) {
 
-    fun checkCorrectness(): Boolean =
+    fun validate(): Boolean =
         when {
             puzzle.isEmpty() || blanksRemaining() -> false
             checkRows() && checkColumns() && validateMatrix() -> true
@@ -25,7 +25,7 @@ class Sudoku(private val puzzle: Array<IntArray>) {
         var column: IntArray
 
         for (i in puzzle.indices) {
-            column = IntArray(puzzle.size)
+            column = Board.Row(puzzle.size).get()
             puzzle.indices.forEach { row ->
                 column[row] = puzzle[row][i]
             }
@@ -69,11 +69,7 @@ class Sudoku(private val puzzle: Array<IntArray>) {
         return isSumCorrect(values)
     }
 
-    private fun isSumCorrect(array: IntArray): Boolean {
-        return array.reduce { acc, digit -> acc + digit } == 45
-    }
-
-    private fun isSumCorrect(list: ArrayList<Int>): Boolean {
-        return list.distinct().reduce { acc, digit -> acc + digit } == 45
-    }
+    private fun isSumCorrect(array: IntArray) = array.reduce { acc, digit -> acc + digit } == 45
+    private fun isSumCorrect(array: Board.Row) = isSumCorrect(array.get())
+    private fun isSumCorrect(list: ArrayList<Int>) = list.distinct().reduce { acc, digit -> acc + digit } == 45
 }

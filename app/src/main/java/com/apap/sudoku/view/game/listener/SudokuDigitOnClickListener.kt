@@ -6,6 +6,7 @@ import androidx.fragment.app.DialogFragment
 import com.apap.sudoku.R
 import com.apap.sudoku.view.game.activity.SudokuActivity
 
+// TODO: Use case ChangeDigit
 open class SudokuDigitOnClickListener(
     private val textView: TextView,
     private val dialog: DialogFragment

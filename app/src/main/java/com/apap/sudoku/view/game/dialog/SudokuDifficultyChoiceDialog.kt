@@ -9,6 +9,7 @@ import androidx.fragment.app.DialogFragment
 import com.apap.sudoku.R
 import com.apap.sudoku.view.game.activity.SudokuActivity
 
+// TODO: ViewBinding
 class SudokuDifficultyChoiceDialog : DialogFragment(), View.OnClickListener {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -24,6 +25,7 @@ class SudokuDifficultyChoiceDialog : DialogFragment(), View.OnClickListener {
 
     override fun onClick(v: View?) {
 
+        // TODO: Enum class for game difficulty
         when (v?.id) {
             R.id.easy_mode -> (activity as SudokuActivity).loadPuzzle("easy")
             R.id.medium_mode -> (activity as SudokuActivity).loadPuzzle("medium")
@@ -37,9 +39,6 @@ class SudokuDifficultyChoiceDialog : DialogFragment(), View.OnClickListener {
     companion object {
         const val TAG = "DIFFICULTY"
 
-        fun newInstance() : SudokuDifficultyChoiceDialog {
-
-            return SudokuDifficultyChoiceDialog()
-        }
+        fun newInstance() = SudokuDifficultyChoiceDialog()
     }
 }

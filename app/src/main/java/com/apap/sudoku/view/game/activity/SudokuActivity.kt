@@ -5,10 +5,10 @@ import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.apap.sudoku.R
 import com.apap.sudoku.databinding.SudokuActivityBinding
+import com.apap.sudoku.util.Board
 import com.apap.sudoku.util.Sudoku
 import com.apap.sudoku.view.game.adapter.SudokuRecyclerViewAdapter
 import com.apap.sudoku.view.game.dialog.PuzzleNotSolvedDialog
@@ -26,10 +26,10 @@ class SudokuActivity : AppCompatActivity(), SudokuRecyclerViewAdapter.OnSudokuCe
     lateinit var binding: SudokuActivityBinding
     private lateinit var sudoku : Sudoku
     private val model: SudokuViewModel by viewModels() { viewModelFactory }
-    private var puzzle: Array<IntArray> = arrayOf(
-        IntArray(9), IntArray(9), IntArray(9),
-        IntArray(9), IntArray(9), IntArray(9),
-        IntArray(9), IntArray(9), IntArray(9)
+    private var puzzle: Array<Board.Row> = arrayOf(
+        Board.Row(9), Board.Row(9), Board.Row(9),
+        Board.Row(9), Board.Row(9), Board.Row(9),
+        Board.Row(9), Board.Row(9), Board.Row(9)
     )
 
     companion object {
@@ -64,7 +64,7 @@ class SudokuActivity : AppCompatActivity(), SudokuRecyclerViewAdapter.OnSudokuCe
         sudoku = Sudoku(puzzle)
 
         binding.checkPuzzleButton.setOnClickListener {
-            when (sudoku.checkCorrectness()) {
+            when (sudoku.validate()) {
                 true -> showDialog(PuzzleSolvedDialog.newInstance(), PuzzleSolvedDialog.TAG)
                 false -> showDialog(PuzzleNotSolvedDialog.newInstance(), PuzzleNotSolvedDialog.TAG)
             }
@@ -83,11 +83,11 @@ class SudokuActivity : AppCompatActivity(), SudokuRecyclerViewAdapter.OnSudokuCe
 
     fun loadPuzzle(difficulty: String = "random") {
 
-        model.getSudokuBoard(difficulty).observe(this, Observer {
+        model.getSudokuBoard(difficulty).observe(this) {
             puzzle = it.getBoard()
             binding.sudokuRecyclerView.adapter =
                 SudokuRecyclerViewAdapter(puzzle, this@SudokuActivity)
-        })
+        }
     }
 
     private fun showDialog(fragment: DialogFragment, tag: String) {

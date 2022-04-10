@@ -11,7 +11,7 @@ import com.apap.sudoku.view.home.activity.HomeActivity
 
 class PuzzleSolvedDialog : DialogFragment() {
 
-    var dialog : AlertDialog? = null
+    lateinit var dialog : AlertDialog
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
@@ -28,7 +28,7 @@ class PuzzleSolvedDialog : DialogFragment() {
                     startActivity(Intent(it, HomeActivity::class.java))
                 }.create()
         }
-        return dialog!!
+        return dialog
     }
 
     companion object {

@@ -8,7 +8,9 @@ import com.apap.sudoku.data.model.SudokuBoardResponse
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
-class SudokuViewModel @Inject constructor(private var getSudokuForDifficulty: GetSudokuForDifficulty) : ViewModel() {
+class SudokuViewModel @Inject constructor(
+    private var getSudokuForDifficulty: GetSudokuForDifficulty
+) : ViewModel() {
 
     companion object {
         val disposable = CompositeDisposable()
@@ -23,11 +25,12 @@ class SudokuViewModel @Inject constructor(private var getSudokuForDifficulty: Ge
         disposable.clear()
     }
 
-    fun getSudokuBoard(difficulty: String) : LiveData<SudokuBoardResponse> {
+    // TODO: Is it the proper use of LiveData?
+    fun getSudokuBoard(difficulty: String): LiveData<SudokuBoardResponse> {
         return fetchSudoku(difficulty)
     }
 
-    private fun fetchSudoku(difficulty: String) : LiveData<SudokuBoardResponse> {
+    private fun fetchSudoku(difficulty: String): LiveData<SudokuBoardResponse> {
         return getSudokuForDifficulty(difficulty)
     }
 }

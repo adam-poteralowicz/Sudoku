@@ -10,7 +10,7 @@ class PuzzleNotSolvedDialog : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
-        var dialog : AlertDialog? = null
+        lateinit var dialog: AlertDialog
 
         activity?.let {
             dialog = AlertDialog.Builder(it)
@@ -20,7 +20,7 @@ class PuzzleNotSolvedDialog : DialogFragment() {
                 }.create()
         }
 
-        return dialog!!
+        return dialog
     }
 
     companion object {

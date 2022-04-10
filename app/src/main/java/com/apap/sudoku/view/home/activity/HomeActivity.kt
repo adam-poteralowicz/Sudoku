@@ -25,10 +25,10 @@ class HomeActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        showDialog(QuitConfirmationDialog.newInstance(), QuitConfirmationDialog.TAG)
+        showDialog(QuitConfirmationDialog.newInstance())
     }
 
-    private fun showDialog(fragment: DialogFragment, tag: String) {
-        fragment.show(this@HomeActivity.supportFragmentManager, tag)
+    private fun showDialog(fragment: DialogFragment) {
+        fragment.show(this@HomeActivity.supportFragmentManager, QuitConfirmationDialog.TAG)
     }
 }
