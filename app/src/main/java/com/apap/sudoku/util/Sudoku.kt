@@ -2,21 +2,18 @@ package com.apap.sudoku.util
 
 class Sudoku(private val puzzle: Array<Board.Row>) {
 
-    fun validate(): Boolean =
-        when {
-            puzzle.isEmpty() || blanksRemaining() -> false
-            checkRows() && checkColumns() && validateMatrix() -> true
-            else -> false
-        }
+    fun validate(): Boolean = when {
+        puzzle.isEmpty() || areBlanksPresent() -> false
+        checkRows() && checkColumns() && validateMatrix() -> true
+        else -> false
+    }
 
-    private fun blanksRemaining(): Boolean {
-        val blanks = (puzzle.indices).flatMap { row ->
-            (puzzle[row].indices).filter { column ->
-                puzzle[row][column] == 0
-            }
-        }
+    private fun areBlanksPresent() = puzzle.filterBlanks().isNotEmpty()
 
-        return blanks.isNotEmpty()
+    private fun Array<Board.Row>.filterBlanks() = this.indices.flatMap { row ->
+        this[row].indices.filter { column ->
+            this[row][column] == 0
+        }
     }
 
     private fun checkRows(): Boolean = puzzle.indices.all { row -> isSumCorrect(puzzle[row]) }
@@ -71,5 +68,6 @@ class Sudoku(private val puzzle: Array<Board.Row>) {
 
     private fun isSumCorrect(array: IntArray) = array.reduce { acc, digit -> acc + digit } == 45
     private fun isSumCorrect(array: Board.Row) = isSumCorrect(array.get())
-    private fun isSumCorrect(list: ArrayList<Int>) = list.distinct().reduce { acc, digit -> acc + digit } == 45
+    private fun isSumCorrect(list: ArrayList<Int>) =
+        list.distinct().reduce { acc, digit -> acc + digit } == 45
 }
