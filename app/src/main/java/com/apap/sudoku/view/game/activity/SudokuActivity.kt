@@ -25,7 +25,7 @@ class SudokuActivity : AppCompatActivity(), SudokuRecyclerViewAdapter.OnSudokuCe
     @Inject lateinit var viewModelFactory: ViewModelFactory
     lateinit var binding: SudokuActivityBinding
     private lateinit var sudoku : Sudoku
-    private val model: SudokuViewModel by viewModels() { viewModelFactory }
+    private val model: SudokuViewModel by viewModels { viewModelFactory }
     private var puzzle: Array<Board.Row> = arrayOf(
         Board.Row(9), Board.Row(9), Board.Row(9),
         Board.Row(9), Board.Row(9), Board.Row(9),
@@ -41,9 +41,9 @@ class SudokuActivity : AppCompatActivity(), SudokuRecyclerViewAdapter.OnSudokuCe
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.sudoku_activity)
-        AndroidInjection.inject(this@SudokuActivity)
         binding = SudokuActivityBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        AndroidInjection.inject(this@SudokuActivity)
 
         loadPuzzle()
 
