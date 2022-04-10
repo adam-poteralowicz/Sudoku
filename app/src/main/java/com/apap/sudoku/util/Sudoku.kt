@@ -53,8 +53,8 @@ class Sudoku(private val puzzle: Array<Board.Row>) {
         val matrix = puzzle.sliceArray(index1..index2)
         val values = ArrayList<Int>()
 
-        matrix.forEachIndexed { i, _ ->
-            matrix[i].sliceArray(index3..index4).forEach {
+        matrix.forEach { row ->
+            row.sliceArray(index3..index4).forEach {
                 values.add(it)
             }
         }
