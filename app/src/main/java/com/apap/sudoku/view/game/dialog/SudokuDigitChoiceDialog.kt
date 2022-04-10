@@ -7,12 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import androidx.fragment.app.DialogFragment
 import com.apap.sudoku.R
 import com.apap.sudoku.view.game.listener.SudokuDigitOnClickListener
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 // TODO: ViewBinding
-class SudokuDigitChoiceDialog(private val digit: TextView) : DialogFragment() {
+class SudokuDigitChoiceDialog(private val digit: TextView) : BottomSheetDialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.digit_choice_dialog, container, true)
