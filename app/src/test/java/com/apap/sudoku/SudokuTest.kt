@@ -11,8 +11,6 @@ import org.junit.runners.JUnit4
 @RunWith(JUnit4::class)
 class SudokuTest {
 
-    private lateinit var emptyPuzzle: Array<Board.Row>
-
     @Test
     fun shouldRejectSolutionWithEmptyPuzzleArray() {
         val emptyPuzzle = Array(9) { Board.Row() }

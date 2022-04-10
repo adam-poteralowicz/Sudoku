@@ -16,7 +16,7 @@ class Sudoku(private val puzzle: Array<Board.Row>) {
         }
     }
 
-    private fun checkRows(): Boolean = puzzle.indices.all { row -> isSumCorrect(puzzle[row]) }
+    private fun checkRows(): Boolean = puzzle.indices.all { row -> puzzle[row].isSumCorrect() }
 
     private fun checkColumns(): Boolean {
         var column: IntArray
@@ -27,7 +27,7 @@ class Sudoku(private val puzzle: Array<Board.Row>) {
                 column[row] = puzzle[row][i]
             }
 
-            if (!isSumCorrect(column)) {
+            if (!column.isSumCorrect()) {
                 return false
             }
         }
@@ -63,11 +63,10 @@ class Sudoku(private val puzzle: Array<Board.Row>) {
             return false
         }
 
-        return isSumCorrect(values)
+        return values.isSumCorrect()
     }
 
-    private fun isSumCorrect(array: IntArray) = array.reduce { acc, digit -> acc + digit } == 45
-    private fun isSumCorrect(array: Board.Row) = isSumCorrect(array.get())
-    private fun isSumCorrect(list: ArrayList<Int>) =
-        list.distinct().reduce { acc, digit -> acc + digit } == 45
+    private fun ArrayList<Int>.isSumCorrect() = distinct().reduce { acc, digit -> acc + digit } == 45
+    private fun Board.Row.isSumCorrect() = get().isSumCorrect()
+    private fun IntArray.isSumCorrect() = reduce { acc, digit -> acc + digit } == 45
 }
